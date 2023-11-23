@@ -7,7 +7,7 @@ def home():
     return render_template('login.html')
 
 @app.route('/citas')
-def home():
+def citas():
     return render_template('citas.html')
 
 if __name__ == '__main__':
