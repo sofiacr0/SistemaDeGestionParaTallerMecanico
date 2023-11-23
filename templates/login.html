@@ -2,20 +2,39 @@
 <html lang="esp">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="styles.css" rel="stylesheet" />
         <title>Software</title>
-        <link href="style.css" rel="stylesheet" />
     </head>
     <body id="body">
-        <h1>Login<br></h1>
-        <h3>Introduzca su usuario y contraseña</h3>
+        <header>
+            <h1>Taller Automaster</h1>
+        </header>
+        <section class="hero">
+            <div>
+                <h1>Login<br></h1>
+            </div>
+        </section>
 
-        <form action="" method="POST">
-            <label for="user">Usuario:</label>
-            <input type="text" id="username" name="username"><br>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" name="enviar" value="Enviar">
-        </form>
+        <section class="feature space">
+            <h3>Introduzca su usuario y contraseña</h3>
+        </section>
+        
+        <section class="feature">
+            <div class="margin">
+                <form action="" method="POST">
+                    <label for="user">Usuario:</label>
+                    <input type="text" id="username" name="username"><br>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password"><br><br>
+                    <input type="submit" name="enviar" value="Enviar">
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 Taller Automaster. Todos los derechos reservados.</p>
+        </footer>
+
     </body>
 </html>
