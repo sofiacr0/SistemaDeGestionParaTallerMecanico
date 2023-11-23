@@ -33,7 +33,7 @@ nav a {
 
 .hero {
     background-color: #f0f0f0;
-    padding: 2rem;
+    padding: 0.25rem;
     text-align: center;
 }
 
@@ -54,6 +54,14 @@ nav a {
 
 .feature {
     text-align: center;
+}
+
+.space {
+    margin-top: 0.25rem;
+}
+
+.margin {
+    margin-top: 1rem;
 }
 
 footer {
