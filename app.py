@@ -6,6 +6,14 @@ app = Flask(__name__)
 def home():
     return render_template('login.html')
 
+@app.route('/paneldecontrol')
+def paneldecontrol():
+    return render_template('paneldecontrol.html')
+
+@app.route('/inventario')
+def inventario():
+    return render_template('inventario.html')
+
 @app.route('/citas')
 def citas():
     return render_template('citas.html')
