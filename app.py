@@ -41,7 +41,7 @@ def citas():
 
     except Exception as e:
         print(f"Error en la base de datos: {e}")
-        result = None  # Si hay un error, establece result en None
+        result = None 
 
     finally:
         if connection:

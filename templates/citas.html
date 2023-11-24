@@ -27,28 +27,29 @@
     <h1>Resultados de la Consulta</h1>
     
     {% if data %}
-        <table>
-            <tr>
-                <th>IDCita</th>
-                <th>IDCliente</th>
-                <th>FechaEntrada</th>
-                <th>FechaSalida</th>
-                <th>Servicio</th>
-                <th>Empleado</th>
-            </tr>
-            {% for row in data %}
-                <tr>
-                    <td>{{ row.IDCita }}</td>
-                    <td>{{ row.IDCliente }}</td>
-                    <td>{{ row.FechaEntrada }}</td>
-                    <td>{{ row.FechaSalida }}</td>
-                    <td>{{ row.Servicio }}</td>
-                    <td>{{ row.Empleado }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No hay resultados disponibles.</p>
-    {% endif %}
+<table>
+    <tr>
+        <th>IDCita</th>
+        <th>IDCliente</th>
+        <th>FechaEntrada</th>
+        <th>FechaSalida</th>
+        <th>Servicio</th>
+        <th>Empleado</th>
+    </tr>
+
+    {% for row in data %}
+    <tr>
+        <td>{{ row[0] }}</td> 
+        <td>{{ row[1] }}</td> 
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No hay resultados disponibles.</p>
+{% endif %}
 </body>
 </html>
