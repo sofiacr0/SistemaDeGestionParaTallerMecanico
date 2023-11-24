@@ -31,7 +31,7 @@ CREATE TABLE EMPLEADO (
     Apellido1 VARCHAR(50) NOT NULL,
     Apellido2 VARCHAR(50),
     Telefono VARCHAR(15),
-    Puesto INT,
+    IDPuesto INT,
     Estado BOOLEAN DEFAULT 1,
     FOREIGN KEY (Puesto) REFERENCES PUESTO(IDPuesto)
 );
@@ -43,7 +43,7 @@ CREATE TABLE VEHICULO (
     Anio INT,
     Placa VARCHAR(10),
     Color VARCHAR(50),
-    Cliente INT,
+    IDCliente INT,
     FOREIGN KEY (Cliente) REFERENCES CLIENTE(IDCliente)
 );
 
@@ -53,8 +53,8 @@ CREATE TABLE SERVICIO (
     Descripcion VARCHAR(200),
     Costo DECIMAL(10, 2),
     Garantia VARCHAR(100),
-    Empleado INT,
-    Vehiculo INT,
+    IDEmpleado INT,
+    IDVehiculo INT,
     FOREIGN KEY (Empleado) REFERENCES EMPLEADO(IDEmpleado),
     FOREIGN KEY (Vehiculo) REFERENCES VEHICULO(IDVehiculo)
 );
@@ -67,7 +67,7 @@ CREATE TABLE PIEZA (
     Estado BOOLEAN DEFAULT 1,
     PrecioCompra DECIMAL(10, 2),
     PrecioVenta DECIMAL(10, 2),
-    Proveedor INT,
+    IDProveedor INT,
     FOREIGN KEY (Proveedor) REFERENCES PROVEEDOR(IDProveedor)
 );
 
@@ -76,8 +76,8 @@ CREATE TABLE CITA (
     IDCliente INT,
     FechaEntrada DATETIME,
     FechaSalida DATETIME,
-    Servicio INT,
-    Empleado INT,
+    IDServicio INT,
+    IDEmpleado INT,
     FOREIGN KEY (IDCliente) REFERENCES CLIENTE(IDCliente),
     FOREIGN KEY (Servicio) REFERENCES SERVICIO(IDServicio),
     FOREIGN KEY (Empleado) REFERENCES EMPLEADO(IDEmpleado)
