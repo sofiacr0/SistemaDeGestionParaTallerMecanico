@@ -100,8 +100,6 @@ JOIN CLIENTE ON CITA.IDCliente = CLIENTE.IDCliente
 JOIN EMPLEADO ON CITA.IDEmpleado = EMPLEADO.IDEmpleado 
 JOIN SERVICIO ON CITA.IDServicio = SERVICIO.IDServicio;
 
-
-
 -- RELLENO TABLA PROVEEDOR --
 INSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
 (1, 'AutoRepuestos Velázquez', 'Proveedor de repuestos automotrices de alta calidad.', '123-456-7890', 'info@autorepuestosvelazquez.com'),
