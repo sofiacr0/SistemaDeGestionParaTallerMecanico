@@ -33,7 +33,7 @@ CREATE TABLE EMPLEADO (
     Telefono VARCHAR(15),
     IDPuesto INT,
     Estado BOOLEAN DEFAULT 1,
-    FOREIGN KEY (Puesto) REFERENCES PUESTO(IDPuesto)
+    FOREIGN KEY (IDPuesto) REFERENCES PUESTO(IDPuesto)
 );
 
 CREATE TABLE VEHICULO (
@@ -44,7 +44,7 @@ CREATE TABLE VEHICULO (
     Placa VARCHAR(10),
     Color VARCHAR(50),
     IDCliente INT,
-    FOREIGN KEY (Cliente) REFERENCES CLIENTE(IDCliente)
+    FOREIGN KEY (IDCliente) REFERENCES CLIENTE(IDCliente)
 );
 
 CREATE TABLE SERVICIO (
@@ -55,8 +55,8 @@ CREATE TABLE SERVICIO (
     Garantia VARCHAR(100),
     IDEmpleado INT,
     IDVehiculo INT,
-    FOREIGN KEY (Empleado) REFERENCES EMPLEADO(IDEmpleado),
-    FOREIGN KEY (Vehiculo) REFERENCES VEHICULO(IDVehiculo)
+    FOREIGN KEY (IDEmpleado) REFERENCES EMPLEADO(IDEmpleado),
+    FOREIGN KEY (IDVehiculo) REFERENCES VEHICULO(IDVehiculo)
 );
 
 CREATE TABLE PIEZA (
@@ -68,7 +68,7 @@ CREATE TABLE PIEZA (
     PrecioCompra DECIMAL(10, 2),
     PrecioVenta DECIMAL(10, 2),
     IDProveedor INT,
-    FOREIGN KEY (Proveedor) REFERENCES PROVEEDOR(IDProveedor)
+    FOREIGN KEY (IDProveedor) REFERENCES PROVEEDOR(IDProveedor)
 );
 
 CREATE TABLE CITA (
@@ -79,8 +79,8 @@ CREATE TABLE CITA (
     IDServicio INT,
     IDEmpleado INT,
     FOREIGN KEY (IDCliente) REFERENCES CLIENTE(IDCliente),
-    FOREIGN KEY (Servicio) REFERENCES SERVICIO(IDServicio),
-    FOREIGN KEY (Empleado) REFERENCES EMPLEADO(IDEmpleado)
+    FOREIGN KEY (IDServicio) REFERENCES SERVICIO(IDServicio),
+    FOREIGN KEY (IDEmpleado) REFERENCES EMPLEADO(IDEmpleado)
 );
 
 INSERT INTO PROVEEDOR (Nombre, Descripcion, Telefono, Email)
@@ -99,27 +99,27 @@ VALUES
     ('Mecánico', 'Descripción del puesto de mecánico'),
     ('Recepcionista', 'Descripción del puesto de recepcionista');
 
-INSERT INTO EMPLEADO (Nombre, Apellido1, Apellido2, Telefono, Puesto)
+INSERT INTO EMPLEADO (Nombre, Apellido1, Apellido2, Telefono, IDPuesto)
 VALUES
     ('Empleado 1', 'Apellido1 Empleado 1', 'Apellido2 Empleado 1', '555-111-2222', 1),
     ('Empleado 2', 'Apellido1 Empleado 2', 'Apellido2 Empleado 2', '555-333-4444', 2);
 
-INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, Cliente)
+INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, IDCliente)
 VALUES
     ('Toyota', 2020, 1234, 'ABC123', 'Rojo', 1),
     ('Ford', 2019, 5678, 'XYZ987', 'Azul', 2);
 
-INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, Empleado, Vehiculo)
+INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo)
 VALUES
     ('Cambio de aceite', 'Descripción del cambio de aceite', 50.00, 'Garantía de 3 meses', 1, 1),
     ('Reparación de frenos', 'Descripción de la reparación de frenos', 120.00, 'Garantía de 6 meses', 2, 2);
 
-INSERT INTO PIEZA (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, Proveedor)
+INSERT INTO PIEZA (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor)
 VALUES
     ('Filtro de aceite', 100, '2023-01-15', 5.00, 10.00, 1),
     ('Pastillas de freno', 50, '2023-02-20', 10.00, 20.00, 2);
 
-INSERT INTO CITA (IDCliente, FechaEntrada, FechaSalida, Servicio, Empleado)
+INSERT INTO CITA (IDCliente, FechaEntrada, FechaSalida, IDServicio, IDEmpleado)
 VALUES
     (1, '2023-10-15 10:00:00', '2023-10-15 14:00:00', 1, 1),
     (2, '2023-10-16 11:00:00', '2023-10-16 15:00:00', 2, 2);
