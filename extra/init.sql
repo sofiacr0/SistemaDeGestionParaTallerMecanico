@@ -107,11 +107,17 @@ INSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
 (3, 'Neumáticos RápidoGiro', 'Especialistas en neumáticos y servicios de alineación.', '555-7890-1234', 'info@rapido-giro-neumaticos.com');
 
 -- RELLENO TABLA CLIENTE --
-INSERT INTO CLIENTE (IDCliente, Nombre, Apellido1, Apellido2, Telefono, Email)
-VALUES
+INSERT INTO `CLIENTE` (`IDCliente`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`) VALUES
 (1, 'Carlos', 'Mendoza', 'Rivera', '555-123-4567', 'Carlos@example.com'),
 (2, 'Laura', 'Fernandez', 'Salazar', '555-987-6543', 'Laura23@example.com'),
-(3, 'Roberto', 'Diaz', 'Perez', '555-123-4567', 'Rob@example.com');
+(3, 'Roberto', 'Diaz', 'Perez', '555-123-4567', 'Rob@example.com'),
+(4, 'Ana', 'Martinez', 'Sanchez', '349-876-5210', 'ana.martinez@example.com'),
+(5, 'Miguel', 'Rodriguez', 'Martinez', '341-112-2333', 'miguel@example.com'),
+(6, 'Isabel', 'Gonzales', 'Diaz', '555-344-4666', 'isabel@example.com'),
+(7, 'David', 'Garcia', 'Palacios', '555-710-1330', 'David@example.com'),
+(8, 'Jorge', 'Hernandez', 'Jimenez', '555-222-5111', 'JH@example.com'),
+(9, 'Andres', 'Soto', 'Medina', '555-892-1346', 'AndySoto@example.com'),
+(10, 'Patricia', 'Ortiz', 'Vega', '555-032-2467', 'Patricia@example.com');
 
 -- RELLENO TABLA PUESTO --
 INSERT INTO PUESTO (IDPuesto, Nombre, Descripcion) VALUES
@@ -126,10 +132,17 @@ VALUES
 (3, 'Maria', 'Martinez', 'Garcia', '555112233', 1, 1);
 
 -- RELLENO TABLA VEHICULO --
-INSERT INTO VEHICULO (IDVehiculo, Marca, Modelo, Anio, Placa, Color, IDCliente) VALUES
+INSERT INTO `VEHICULO` (`IDVehiculo`, `Marca`, `Modelo`, `Anio`, `Placa`, `Color`, `Cliente`) VALUES
 (1, 'Toyota', 2020, 1234, 'ABC123', 'Rojo', 1),
 (2, 'Ford', 2019, 5678, 'XYZ987', 'Azul', 2),
-(3, 'Honda', 2019, 1234, 'ABC-123', 'Azul', 3);
+(3, 'Honda', 2019, 1234, 'ABC-123', 'Azul', 3),
+(4, 'Ford', 2022, 8929, 'XYZ-789', 'Blanco', 4),
+(5, 'Chevrolet', 2019, 7823, 'GHI-789', 'Negro', 5),
+(6, 'Volkswagen', 2018, 1356, 'JKL-012', 'Blanco', 6),
+(7, 'Nissan', 2016, 6789, 'MNO-345', 'Gris', 7),
+(8, 'Mercedes-Benz', 2021, 3456, 'PQR-678', 'Negro', 8),
+(9, 'BMW', 2017, 3456, 'STU-901', 'Dorado', 9),
+(10, 'Hyundai', 2008, 6789, 'YZA-567', 'Rojo', 10);
 
 -- RELLENO TABLA SERVICIO --
 INSERT INTO SERVICIO (IDServicio, Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES
