@@ -9,37 +9,39 @@ db_config = {
     'user': 'root',
     'password': 'root',
     'database': 'TallerMecanico',
+    'charset': 'utf8mb4'
 }
 
 # Función para obtener una conexión a la base de datos
-
-
 def get_db_connection():
     return pymysql.connect(**db_config)
 
-
+# ESTO SE VA A ELIMINAR, SOLO ES PARA TENER TODAS LAS PAGINAS A LA MANO Y CHECARLAS MAS RAPIDO
 @app.route('/')
+def test():
+    return render_template('test.html')
+
+# LOGIN
+@app.route('/login')
 def home():
     return render_template('login.html')
 
-
+# PANEL DE CONTROL
 @app.route('/paneldecontrol')
 def paneldecontrol():
     return render_template('paneldecontrol.html')
 
-
+# SISTEMA DE GESTIÓN DE INVENTARIO
 @app.route('/inventario')
 def inventario():
     return render_template('inventario.html')
 
-
+# SISTEMA DE GESTIÓN DE CITAS
 @app.route('/citas', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def citas():
-
-    # GET: Este método se utiliza para solicitar datos de un recurso específico. En Flask, se utiliza comúnmente para recuperar información del servidor.
-
+    # OBTIENE REGISTROS
     if request.method == 'GET':
-        connection = None  # Initialize connection variable with None
+        connection = None  
 
         try:
             connection = get_db_connection()
@@ -54,8 +56,7 @@ def citas():
                 connection.close()
             return render_template('citas.html', data=result)
 
-    # POST: Este método se utiliza para enviar datos al servidor para ser procesados. Por lo general, se utiliza para enviar información confidencial como contraseñas o para enviar datos que serán procesados y almacenados en el servidor.
-
+    # AÑADE REGISTROS
     if request.method == 'POST':
         IDCliente = request.form['IDCliente']
         FechaEntrada = request.form['FechaEntrada']
@@ -81,9 +82,11 @@ def citas():
             connection.close()
         return jsonify(response)
 
-    # PUT: Se utiliza para actualizar un recurso en el servidor. En Flask, puede ser utilizado para modificar información existente en el servidor.
-
-    # DELETE: Como su nombre indica, este método se utiliza para eliminar un recurso en el servidor.
+    # ACTUALIZA REGISTROS
+    if request.method == 'PUT':
+        pass
+    
+    #ELIMINA REGISTROS
     if request.method == 'DELETE':
         IDCita = request.form['IDCita']
 
@@ -92,7 +95,6 @@ def citas():
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM CITA WHERE IDCita = %s"
-                # Añadir coma para asegurar una tupla
                 cursor.execute(sql, (IDCita,))
 
             connection.commit()
@@ -105,6 +107,86 @@ def citas():
         finally:
             connection.close()
         return jsonify(response)
+
+# SISTEMA DE GESTIÓN DE EMPLEADOS
+@app.route('/empleados')
+def empleados():
+    # OBTIENE REGISTROS
+    if request.method == 'GET':
+        connection = None  
+
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM EMPLEADO')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
+            return render_template('empleados.html', data=result)
+
+# SISTEMA DE GESTIÓN DE CLIENTES
+@app.route('/clientes')
+def clientes():
+    # OBTIENE REGISTROS
+    if request.method == 'GET':
+        connection = None  
+
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM CLIENTE')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
+            return render_template('clientes.html', data=result)
+
+# SISTEMA DE GESTIÓN DE VEHICULOS
+@app.route('/vehiculos')
+def vehiculos():
+    # OBTIENE REGISTROS
+    if request.method == 'GET':
+        connection = None  
+
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM VEHICULO')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
+            return render_template('vehiculos.html', data=result)
+
+# SISTEMA DE GESTIÓN DE SERVICIOS
+@app.route('/servicios')
+def servicios():
+    # OBTIENE REGISTROS
+    if request.method == 'GET':
+        connection = None  
+
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM SERVICIO')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
+            return render_template('servicios.html', data=result)
 
 
 if __name__ == '__main__':

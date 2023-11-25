@@ -1,0 +1,30 @@
+<!-- TABLA DE VEHICULOS -->
+{% if data %}
+<table>
+  <!-- Cabecera de la tabla -->
+  <tr>
+    <th>IDVehiculo</th>
+    <th>Marca</th>
+    <th>Modelo</th>
+    <th>Año</th>
+    <th>Placa</th>
+    <th>Color</th>
+    <th>IDCliente</th>
+  </tr>
+
+  <!-- Filas de la tabla -->
+  {% for row in data %}
+  <tr>
+    <td>{{ row[0] }}</td>
+    <td>{{ row[1] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{{ row[4] }}</td>
+    <td>{{ row[5] }}</td>
+    <td>{{ row[6] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay resultados disponibles.</p>
+{% endif %}

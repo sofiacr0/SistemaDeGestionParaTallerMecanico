@@ -1,0 +1,28 @@
+<!-- TABLA DE CLIENTES-->
+{% if data %}
+<table>
+  <!-- Cabecera de la tabla -->
+  <tr>
+    <th>IDCliente</th>
+    <th>Nombre</th>
+    <th>Apellido1</th>
+    <th>Apellido2</th>
+    <th>Telefono</th>
+    <th>Email</th>
+  </tr>
+  
+  <!-- Filas de la tabla -->
+  {% for row in data %}
+  <tr>
+    <td>{{ row[0] }}</td>
+    <td>{{ row[1] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{{ row[4] }}</td>
+    <td>{{ row[5] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay resultados disponibles.</p>
+{% endif %}

@@ -12,12 +12,6 @@ function cerrarModalAñadirCita() {
   document.getElementById("modalAñadirCita").style.display = "none";
 }
 
-window.onclick = function (event) {
-  if (event.target == document.getElementById("modalAñadirCita")) {
-    cerrarModalAñadirCita();
-  }
-};
-
 $(document).ready(function () {
   $("#añadirCita").submit(function (event) {
     event.preventDefault();
@@ -49,12 +43,6 @@ function abrirModalEliminarCita() {
 function cerrarModalEliminarCita() {
   document.getElementById("modalEliminarCita").style.display = "none";
 }
-
-window.onclick = function (event) {
-  if (event.target == document.getElementById("modalEliminarCita")) {
-    cerrarModalEliminarCita();
-  }
-};
 
 $(document).ready(function () {
   $("#eliminarCita").submit(function (event) {

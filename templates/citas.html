@@ -49,16 +49,19 @@
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalAñadirCita()">&times;</span>
 
+        <!-- Encabezado del formulario -->
+        <h2>Añadir cita</h2>
+
         <!-- Formulario -->
         <form action="/citas" method="post" id="añadirCita">
           <!-- Campos del formulario -->
-          IDCliente: <input type="text" name="IDCliente" /><br />
-          FechaEntrada:
+          Cliente: <input type="text" name="IDCliente" /><br />
+          Entrada:
           <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
-          FechaSalida:
+          Salida:
           <input type="text" name="FechaSalida" class="datetimepicker" /><br />
-          IDServicio: <input type="text" name="IDServicio" /><br />
-          IDEmpleado: <input type="text" name="IDEmpleado" /><br />
+          Servicio: <input type="text" name="IDServicio" /><br />
+          Empleado: <input type="text" name="IDEmpleado" /><br />
 
           <input type="submit" value="Enviar" />
         </form>
@@ -71,11 +74,14 @@
     <div id="modalEliminarCita" class="modal">
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalEliminarCita()">&times;</span>
-
+        
+        <!-- Encabezado del formulario -->
+        <h2>Eliminar cita</h2>
+        
         <!-- Formulario -->
         <form action="/citas" method="DELETE" id="eliminarCita">
           <!-- Campos del formulario -->
-          IDCita: <input type="text" name="IDCita" /><br />
+          ID: <input type="text" name="IDCita" /><br />
           <input type="submit" value="Enviar" />
         </form>
       </div>
@@ -86,10 +92,10 @@
     <table>
       <!-- Cabecera de la tabla -->
       <tr>
-        <th>IDCita</th>
-        <th>IDCliente</th>
-        <th>FechaEntrada</th>
-        <th>FechaSalida</th>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Entrada</th>
+        <th>Salida</th>
         <th>Servicio</th>
         <th>Empleado</th>
       </tr>
