@@ -4,16 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <title>Taller Automaster - Citas</title>
+
+    <!-- jQuery UI CSS -->
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
+    <!-- jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- datetimepicker CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+    />
+
+    <!-- datetimepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+    <title>Automaster - Sistema de gestión de citas</title>
   </head>
 
   <body>
-    <h1>Citas</h1>
+    <h1>Sistema de gestión de citas</h1>
 
     <!-- Botones -->
     <button onclick="abrirModalAñadirCita()">Añadir cita</button>
@@ -29,8 +50,10 @@
         <form action="/citas" method="post" id="añadirCita">
           <!-- Campos del formulario -->
           IDCliente: <input type="text" name="IDCliente" /><br />
-          FechaEntrada: <input type="text" name="FechaEntrada" /><br />
-          FechaSalida: <input type="text" name="FechaSalida" /><br />
+          FechaEntrada:
+          <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
+          FechaSalida:
+          <input type="text" name="FechaSalida" class="datetimepicker" /><br />
           IDServicio: <input type="text" name="IDServicio" /><br />
           IDEmpleado: <input type="text" name="IDEmpleado" /><br />
 

@@ -1,6 +1,10 @@
 // AÑADIR CITA
 function abrirModalAñadirCita() {
   document.getElementById("modalAñadirCita").style.display = "block";
+  $(".datetimepicker").datetimepicker({
+    format: "Y-m-d H:i",  // Formato de fecha y hora
+    step: 15,             // Incremento de minutos
+  });
 }
 
 function cerrarModalAñadirCita() {
