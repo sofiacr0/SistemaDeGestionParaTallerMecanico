@@ -1,117 +1,122 @@
-<!-- templates/citas.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link to your existing CSS file -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Link to jQuery from CDN -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <title>Citas</title>
-</head>
+    <title>Taller Automaster - Citas</title>
+  </head>
 
-<body>
+  <body>
     <h1>Citas</h1>
 
-    <!-- Botón para abrir el formulario AÑADIR CITA -->
-    <button onclick="abrirFormularioAñadirCita()">Añadir cita</button>
+    <!------------------ AÑADIR CITA ------------------>
+
+    <!-- Botón para abrir el modal -->
+    <button onclick="abrirModalAñadirCita()">Añadir cita</button>
 
     <!-- Modal -->
-    <div id="miModal" class="modal">
-        <div class="modal-contenido">
-            <span class="cerrar" onclick="cerrarFormularioAñadirCita()">&times;</span>
+    <div id="modalAñadirCita" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalAñadirCita()">&times;</span>
 
-            <!-- Formulario -->
-            <form action="/citas" method="post" id="citasForm">
-                <!-- Campos del formulario -->
-                IDCliente: <input type="text" name="IDCliente"><br>
-                FechaEntrada: <input type="text" name="FechaEntrada"><br>
-                FechaSalida: <input type="text" name="FechaSalida"><br>
-                IDServicio: <input type="text" name="IDServicio"><br>
-                IDEmpleado: <input type="text" name="IDEmpleado"><br>
-                <!-- Agrega más campos según tu estructura de base de datos -->
+        <!-- Formulario -->
+        <form action="/citas" method="post" id="añadirCita">
+          <!-- Campos del formulario -->
+          IDCliente: <input type="text" name="IDCliente" /><br />
+          FechaEntrada: <input type="text" name="FechaEntrada" /><br />
+          FechaSalida: <input type="text" name="FechaSalida" /><br />
+          IDServicio: <input type="text" name="IDServicio" /><br />
+          IDEmpleado: <input type="text" name="IDEmpleado" /><br />
 
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
     </div>
 
     <!-- Script JavaScript -->
     <script>
-        function abrirFormularioAñadirCita() {
-            document.getElementById("miModal").style.display = "block";
+      // Abre el modal
+      function abrirModalAñadirCita() {
+        document.getElementById("modalAñadirCita").style.display = "block";
+      }
+
+      // Cierra el modal
+      function cerrarModalAñadirCita() {
+        document.getElementById("modalAñadirCita").style.display = "none";
+      }
+
+      // Cierra el modal si se hace clic fuera de él
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("miModal")) {
+          cerrarModalAñadirCita();
         }
+      };
 
-        function cerrarFormularioAñadirCita() {
-            document.getElementById("miModal").style.display = "none";
-        }
-
-        // Cierra el modal si se hace clic fuera de él
-        window.onclick = function (event) {
-            if (event.target == document.getElementById("miModal")) {
-                cerrarFormularioAñadirCita();
-            }
-        }
-
-        $(document).ready(function () {
-            // Manejo de envío del formulario mediante AJAX
-            $('#citasForm').submit(function (event) {
-                event.preventDefault(); // Evita la presentación predeterminada del formulario
-
-                // Datos del formulario
-                var formData = $(this).serialize();
-
-                // Realiza una solicitud AJAX al endpoint de Flask
-                $.ajax({
-                    type: 'POST',
-                    url: '/citas',
-                    data: formData,
-                    dataType: 'json', // Espera una respuesta en formato JSON
-                    success: function (response) {
-                        // Muestra un modal de confirmación o un mensaje de error según la respuesta
-                        alert(response.message);
-                        cerrarFormularioAñadirCita(); // Cierra el modal del formulario
-                        location.reload(); // Recarga la página
-                    },
-                    error: function (error) {
-                        console.error('Error:', error);
-                    }
-                });
-            });
+      // Manejo de envío del formulario mediante AJAX
+      $(document).ready(function () {
+        $("#añadirCita").submit(function (event) {
+          event.preventDefault();
+          var formData = $(this).serialize();
+          $.ajax({
+            type: "POST",
+            url: "/citas",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+              alert(response.message);
+              cerrarModalAñadirCita();
+              location.reload();
+            },
+            error: function (error) {
+              console.error("Error:", error);
+            },
+          });
         });
+      });
     </script>
 
+    <!------------------ ACTUALIZAR CITA ------------------>
+
+    <!------------------ ELIMINAR CITA ------------------>
+
+    <!------------------ TABLA DE CITAS ------------------>
+
     {% if data %}
-    <!-- Tabla de datos -->
+
     <table>
-        <tr>
-            <th>IDCita</th>
-            <th>IDCliente</th>
-            <th>FechaEntrada</th>
-            <th>FechaSalida</th>
-            <th>Servicio</th>
-            <th>Empleado</th>
-        </tr>
+      <tr>
+        <th>IDCita</th>
+        <th>IDCliente</th>
+        <th>FechaEntrada</th>
+        <th>FechaSalida</th>
+        <th>Servicio</th>
+        <th>Empleado</th>
+      </tr>
 
-        {% for row in data %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
-            <td>{{ row[3] }}</td>
-            <td>{{ row[4] }}</td>
-            <td>{{ row[5] }}</td>
-        </tr>
-        {% endfor %}
+      {% for row in data %}
+      
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+      </tr>
+
+      {% endfor %}
     </table>
-    {% else %}
-    <!-- Mensaje de no hay resultados -->
-    <p>No hay resultados disponibles.</p>
-    {% endif %}
-</body>
 
+    {% else %}
+
+    <p>No hay resultados disponibles.</p>
+
+    {% endif %}
+  </body>
 </html>
