@@ -44,7 +44,7 @@ def citas():
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute('SELECT * FROM CITA')
+                cursor.execute('SELECT * FROM vista_citas')
                 result = cursor.fetchall()
         except Exception as e:
             print(f"Error en la base de datos: {e}")
