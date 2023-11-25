@@ -15,12 +15,12 @@
   <body>
     <h1>Citas</h1>
 
-    <!------------------ AÑADIR CITA ------------------>
-
-    <!-- Botón para abrir el modal -->
+    <!-- Botones -->
     <button onclick="abrirModalAñadirCita()">Añadir cita</button>
+    <button onclick="abrirModalActualizarCita()">Actualizar cita</button>
+    <button onclick="abrirModalEliminarCita()">Eliminar cita</button>
 
-    <!-- Modal -->
+    <!-- AÑADIR CITA -->
     <div id="modalAñadirCita" class="modal">
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalAñadirCita()">&times;</span>
@@ -39,57 +39,14 @@
       </div>
     </div>
 
-    <!-- Script JavaScript -->
-    <script>
-      // Abre el modal
-      function abrirModalAñadirCita() {
-        document.getElementById("modalAñadirCita").style.display = "block";
-      }
+    <!-- ACTUALIZAR CITA -->
 
-      // Cierra el modal
-      function cerrarModalAñadirCita() {
-        document.getElementById("modalAñadirCita").style.display = "none";
-      }
+    <!-- ELIMINAR CITA -->
 
-      // Cierra el modal si se hace clic fuera de él
-      window.onclick = function (event) {
-        if (event.target == document.getElementById("miModal")) {
-          cerrarModalAñadirCita();
-        }
-      };
-
-      // Manejo de envío del formulario mediante AJAX
-      $(document).ready(function () {
-        $("#añadirCita").submit(function (event) {
-          event.preventDefault();
-          var formData = $(this).serialize();
-          $.ajax({
-            type: "POST",
-            url: "/citas",
-            data: formData,
-            dataType: "json",
-            success: function (response) {
-              alert(response.message);
-              cerrarModalAñadirCita();
-              location.reload();
-            },
-            error: function (error) {
-              console.error("Error:", error);
-            },
-          });
-        });
-      });
-    </script>
-
-    <!------------------ ACTUALIZAR CITA ------------------>
-
-    <!------------------ ELIMINAR CITA ------------------>
-
-    <!------------------ TABLA DE CITAS ------------------>
-
+    <!-- Tabla de citas -->
     {% if data %}
-
     <table>
+      <!-- Cabecera de la tabla -->
       <tr>
         <th>IDCita</th>
         <th>IDCliente</th>
@@ -99,8 +56,8 @@
         <th>Empleado</th>
       </tr>
 
+      <!-- Filas de la tabla -->
       {% for row in data %}
-      
       <tr>
         <td>{{ row[0] }}</td>
         <td>{{ row[1] }}</td>
@@ -109,14 +66,13 @@
         <td>{{ row[4] }}</td>
         <td>{{ row[5] }}</td>
       </tr>
-
       {% endfor %}
     </table>
-
     {% else %}
-
     <p>No hay resultados disponibles.</p>
-
     {% endif %}
+
+    <!-- Archivo de script JavaScript -->
+    <script src="{{ url_for('static', filename='citas.js') }}"></script>
   </body>
 </html>
