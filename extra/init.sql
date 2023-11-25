@@ -83,6 +83,27 @@ CREATE TABLE CITA (
     FOREIGN KEY (IDEmpleado) REFERENCES EMPLEADO(IDEmpleado)
 );
 
+-- UNA MAUSQUEHERRAMIENTA QUE NOS AYUDARÁ MÁS TARDE
+CREATE TABLE MesesEquivalencia (
+    MesIngles VARCHAR(10),
+    MesEspanol VARCHAR(10)
+);
+
+INSERT INTO MesesEquivalencia (MesIngles, MesEspanol)
+VALUES
+    ('January', 'enero'),
+    ('February', 'febrero'),
+    ('March', 'marzo'),
+    ('April', 'abril'),
+    ('May', 'mayo'),
+    ('June', 'junio'),
+    ('July', 'julio'),
+    ('August', 'agosto'),
+    ('September', 'septiembre'),
+    ('October', 'octubre'),
+    ('November', 'noviembre'),
+    ('December', 'diciembre');
+
 -- VISTA CITAS --
 DROP TABLE IF EXISTS vista_citas;
 
@@ -94,19 +115,20 @@ SELECT
     -- Cliente
     CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente, 
 
-    -- FechaEntrada
+   -- FechaEntrada
     CONCAT(
         DATE_FORMAT(CITA.FechaEntrada, '%d de '),
-        MONTHNAME(CITA.FechaEntrada),
+        (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(CITA.FechaEntrada)),
         DATE_FORMAT(CITA.FechaEntrada, ' de %Y %H:%i:%s')
     ) AS fecha_entrada_completa,
 
-    -- FechaSalida
+-- FechaSalida
     CONCAT(
         DATE_FORMAT(CITA.FechaSalida, '%d de '),
-        MONTHNAME(CITA.FechaSalida),
+        (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(CITA.FechaSalida)),
         DATE_FORMAT(CITA.FechaSalida, ' de %Y %H:%i:%s')
     ) AS fecha_salida_completa,
+
 
     -- Servicio
     SERVICIO.Nombre AS nombre_servicio,
