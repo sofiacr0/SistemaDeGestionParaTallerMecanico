@@ -122,7 +122,7 @@ SELECT
         DATE_FORMAT(CITA.FechaEntrada, ' de %Y %H:%i:%s')
     ) AS fecha_entrada_completa,
 
--- FechaSalida
+    -- FechaSalida
     CONCAT(
         DATE_FORMAT(CITA.FechaSalida, '%d de '),
         (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(CITA.FechaSalida)),
