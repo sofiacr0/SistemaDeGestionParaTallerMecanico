@@ -55,13 +55,13 @@
         <!-- Formulario -->
         <form action="/citas" method="post" id="añadirCita">
           <!-- Campos del formulario -->
-          Cliente: <input type="text" name="IDCliente" /><br />
+          ID del cliente: <input type="text" name="IDCliente" /><br />
           Entrada:
           <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
           Salida:
           <input type="text" name="FechaSalida" class="datetimepicker" /><br />
-          Servicio: <input type="text" name="IDServicio" /><br />
-          Empleado: <input type="text" name="IDEmpleado" /><br />
+          ID del servicio: <input type="text" name="IDServicio" /><br />
+          ID del empleado: <input type="text" name="IDEmpleado" /><br />
 
           <input type="submit" value="Enviar" />
         </form>
@@ -69,6 +69,31 @@
     </div>
 
     <!-- ACTUALIZAR CITA -->
+    <div id="modalActualizarCita" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalActualizarCita()"
+          >&times;</span
+        >
+
+        <!-- Encabezado del formulario -->
+        <h2>Actualizar cita</h2>
+
+        <!-- Formulario -->
+        <form action="/citas" method="PUT" id="actualizarCita">
+          <!-- Campos del formulario -->
+          ID de la cita: <input type="text" name="IDCita" /><br />
+          ID del cliente: <input type="text" name="IDCliente" /><br />
+          Entrada:
+          <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
+          Salida:
+          <input type="text" name="FechaSalida" class="datetimepicker" /><br />
+          ID del servicio: <input type="text" name="IDServicio" /><br />
+          ID del empleado: <input type="text" name="IDEmpleado" /><br />
+
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
 
     <!-- ELIMINAR CITA -->
     <div id="modalEliminarCita" class="modal">
@@ -81,7 +106,7 @@
         <!-- Formulario -->
         <form action="/citas" method="DELETE" id="eliminarCita">
           <!-- Campos del formulario -->
-          ID: <input type="text" name="IDCita" /><br />
+          ID del cliente: <input type="text" name="IDCita" /><br />
           <input type="submit" value="Enviar" />
         </form>
       </div>

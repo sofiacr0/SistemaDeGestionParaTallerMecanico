@@ -104,7 +104,7 @@ VALUES
     ('November', 'noviembre'),
     ('December', 'diciembre');
 
--- VISTA CITAS --
+-- VISTA CITAS 
 DROP TABLE IF EXISTS vista_citas;
 
 CREATE VIEW vista_citas AS 
@@ -142,6 +142,16 @@ FROM
     JOIN EMPLEADO ON CITA.IDEmpleado = EMPLEADO.IDEmpleado 
     JOIN SERVICIO ON CITA.IDServicio = SERVICIO.IDServicio;
 
+-- VISTA EMPLEADO
+
+-- VISTA CLIENTE
+CREATE VIEW vista_clientes AS
+SELECT
+    IDCliente,
+    CONCAT(Nombre, ' ', Apellido1, ' ', COALESCE(Apellido2, '')) AS NombreCompleto,
+    Telefono,
+    Email
+FROM CLIENTE;
 
 
 -- RELLENO TABLA PROVEEDOR 
