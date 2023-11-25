@@ -34,6 +34,19 @@ def paneldecontrol():
 # SISTEMA DE GESTIÓN DE INVENTARIO
 @app.route('/inventario')
 def inventario():
+    if request.method == 'GET':
+        connection = None  
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM PIEZA')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
     return render_template('inventario.html')
 
 # SISTEMA DE GESTIÓN DE CITAS
