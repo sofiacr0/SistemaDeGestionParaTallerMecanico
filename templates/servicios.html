@@ -1,30 +1,51 @@
-<!-- TABLA DE SERVICIOS -->
-{% if data %}
-<table>
-  <!-- Cabecera de la tabla -->
-  <tr>
-    <th>IDServicio</th>
-    <th>Nombre</th>
-    <th>Descripción</th>
-    <th>Costo</th>
-    <th>Garantia</th>
-    <th>IDEmpleado</th>
-    <th>IDVehiculo</th>
-  </tr>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <title>Automaster - Sistema de gestión de servicios</title>
+  </head>
 
-  <!-- Filas de la tabla -->
-  {% for row in data %}
-  <tr>
-    <td>{{ row[0] }}</td>
-    <td>{{ row[1] }}</td>
-    <td>{{ row[2] }}</td>
-    <td>{{ row[3] }}</td>
-    <td>{{ row[4] }}</td>
-    <td>{{ row[5] }}</td>
-    <td>{{ row[6] }}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% else %}
-<p>No hay resultados disponibles.</p>
-{% endif %}
+  <!-- TABLA DE SERVICIOS -->
+  {% if data %}
+  <table>
+    <!-- Cabecera de la tabla -->
+    <thead>
+      <tr>
+        <th>IDServicio</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Costo</th>
+        <th>Garantia</th>
+        <th>IDEmpleado</th>
+        <th>IDVehiculo</th>
+      </tr>
+    </thead>
+
+    <!-- Filas de la tabla -->
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[6] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tr></tr>
+  </table>
+
+  {% else %}
+  <p>No hay resultados disponibles.</p>
+  {% endif %}
+</html>
