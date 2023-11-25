@@ -32,7 +32,7 @@ def paneldecontrol():
     return render_template('paneldecontrol.html')
 
 # SISTEMA DE GESTIÓN DE INVENTARIO
-@app.route('/inventario')
+@app.route('/inventario', methods = ['GET'])
 def inventario():
     if request.method == 'GET':
         connection = None  

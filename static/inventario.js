@@ -10,3 +10,11 @@ function abrirModalAñadirArticulo(){
 function cerrarModalAñadirArticulo() {
     document.getElementById("modalAñadirArticulo").style.display = "none";
   }
+
+function abrirModalActualizarArticulo(){
+
+}
+
+function abrirModalEliminarArticulo(){
+    
+}
