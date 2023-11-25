@@ -73,11 +73,11 @@ CREATE TABLE PIEZA (
 
 CREATE TABLE CITA (
     IDCita INT AUTO_INCREMENT PRIMARY KEY,
-    IDCliente INT,
-    FechaEntrada DATETIME,
-    FechaSalida DATETIME,
-    IDServicio INT,
-    IDEmpleado INT,
+    IDCliente INT NULL,
+    FechaEntrada DATETIME NULL,
+    FechaSalida DATETIME NULL,
+    IDServicio INT NULL,
+    IDEmpleado INT NULL,
     FOREIGN KEY (IDCliente) REFERENCES CLIENTE(IDCliente),
     FOREIGN KEY (IDServicio) REFERENCES SERVICIO(IDServicio),
     FOREIGN KEY (IDEmpleado) REFERENCES EMPLEADO(IDEmpleado)
