@@ -1,28 +1,51 @@
-<!-- TABLA DE CLIENTES-->
-{% if data %}
-<table>
-  <!-- Cabecera de la tabla -->
-  <tr>
-    <th>IDCliente</th>
-    <th>Nombre</th>
-    <th>Apellido1</th>
-    <th>Apellido2</th>
-    <th>Telefono</th>
-    <th>Email</th>
-  </tr>
-  
-  <!-- Filas de la tabla -->
-  {% for row in data %}
-  <tr>
-    <td>{{ row[0] }}</td>
-    <td>{{ row[1] }}</td>
-    <td>{{ row[2] }}</td>
-    <td>{{ row[3] }}</td>
-    <td>{{ row[4] }}</td>
-    <td>{{ row[5] }}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% else %}
-<p>No hay resultados disponibles.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <title>Automaster - Sistema de gestión de clientes</title>
+  </head>
+
+  <body>
+    <h1>Sistema de gestión de clientes</h1>
+
+    <!-- TABLA DE CLIENTES-->
+    {% if data %}
+    <table>
+      <!-- Cabecera de la tabla -->
+      <thead>
+        <tr>
+          <th>IDCliente</th>
+          <th>Nombre</th>
+          <th>Apellido1</th>
+          <th>Apellido2</th>
+          <th>Telefono</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+
+      <!-- Filas de la tabla -->
+      <tbody>
+        {% for row in data %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[4] }}</td>
+          <td>{{ row[5] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No hay resultados disponibles.</p>
+    {% endif %}
+  </body>
+</html>
