@@ -74,10 +74,10 @@
     <div id="modalEliminarCita" class="modal">
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalEliminarCita()">&times;</span>
-        
+
         <!-- Encabezado del formulario -->
         <h2>Eliminar cita</h2>
-        
+
         <!-- Formulario -->
         <form action="/citas" method="DELETE" id="eliminarCita">
           <!-- Campos del formulario -->
@@ -91,26 +91,30 @@
     {% if data %}
     <table>
       <!-- Cabecera de la tabla -->
-      <tr>
-        <th>ID</th>
-        <th>Cliente</th>
-        <th>Entrada</th>
-        <th>Salida</th>
-        <th>Servicio</th>
-        <th>Empleado</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th>Servicio</th>
+          <th>Empleado</th>
+        </tr>
+      </thead>
 
       <!-- Filas de la tabla -->
-      {% for row in data %}
-      <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-        <td>{{ row[5] }}</td>
-      </tr>
-      {% endfor %}
+      <tbody>
+        {% for row in data %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[4] }}</td>
+          <td>{{ row[5] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
     {% else %}
     <p>No hay resultados disponibles.</p>
