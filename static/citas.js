@@ -5,7 +5,6 @@ function abrirModalAñadirCita() {
   $(".datetimepicker").datetimepicker({
     format: "Y-m-d H:i",  // Formato de fecha y hora
     step: 15,             // Incremento de minutos
-
   });
 }
 
@@ -43,3 +42,37 @@ $(document).ready(function () {
 // ACTUALIZAR CITA
 
 // ELIMINAR CITA
+function abrirModalEliminarCita() {
+  document.getElementById("modalEliminarCita").style.display = "block";
+}
+
+function cerrarModalEliminarCita() {
+  document.getElementById("modalEliminarCita").style.display = "none";
+}
+
+window.onclick = function (event) {
+  if (event.target == document.getElementById("modalEliminarCita")) {
+    cerrarModalEliminarCita();
+  }
+};
+
+$(document).ready(function () {
+  $("#eliminarCita").submit(function (event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
+    $.ajax({
+      type: "DELETE",
+      url: "/citas",
+      data: formData,
+      dataType: "json",
+      success: function (response) {
+        alert(response.message);
+        cerrarModalEliminarCita();
+        location.reload();
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  });
+});

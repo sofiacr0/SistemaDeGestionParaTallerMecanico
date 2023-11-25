@@ -82,10 +82,29 @@ def citas():
         return jsonify(response)
 
     # PUT: Se utiliza para actualizar un recurso en el servidor. En Flask, puede ser utilizado para modificar información existente en el servidor.
-   
 
     # DELETE: Como su nombre indica, este método se utiliza para eliminar un recurso en el servidor.
+    if request.method == 'DELETE':
+        IDCita = request.form['IDCita']
 
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM CITA WHERE IDCita = %s"
+                # Añadir coma para asegurar una tupla
+                cursor.execute(sql, (IDCita,))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 if __name__ == '__main__':

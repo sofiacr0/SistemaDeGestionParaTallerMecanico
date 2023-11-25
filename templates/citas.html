@@ -68,8 +68,20 @@
     <!-- ACTUALIZAR CITA -->
 
     <!-- ELIMINAR CITA -->
+    <div id="modalEliminarCita" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalEliminarCita()">&times;</span>
 
-    <!-- Tabla de citas -->
+        <!-- Formulario -->
+        <form action="/citas" method="DELETE" id="eliminarCita">
+          <!-- Campos del formulario -->
+          IDCita: <input type="text" name="IDCita" /><br />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
+
+    <!-- TABLA DE CITAS -->
     {% if data %}
     <table>
       <!-- Cabecera de la tabla -->
