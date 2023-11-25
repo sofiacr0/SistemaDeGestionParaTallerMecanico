@@ -88,17 +88,39 @@ DROP TABLE IF EXISTS vista_citas;
 
 CREATE VIEW vista_citas AS 
 SELECT 
+    -- IDCita
     CITA.IDCita AS id_cita, 
+
+    -- Cliente
     CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente, 
-    DATE_FORMAT(CITA.FechaEntrada, '%d de %M de %Y %H:%i:%s') AS fecha_entrada,
-    DATE_FORMAT(CITA.FechaSalida, '%d de %M de %Y %H:%i:%s') AS fecha_salida, 
-    CONCAT(EMPLEADO.Nombre, ' ', EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado, 
-    SERVICIO.Nombre AS nombre_servicio 
+
+    -- FechaEntrada
+    CONCAT(
+        DATE_FORMAT(CITA.FechaEntrada, '%d de '),
+        MONTHNAME(CITA.FechaEntrada),
+        DATE_FORMAT(CITA.FechaEntrada, ' de %Y %H:%i:%s')
+    ) AS fecha_entrada_completa,
+
+    -- FechaSalida
+    CONCAT(
+        DATE_FORMAT(CITA.FechaSalida, '%d de '),
+        MONTHNAME(CITA.FechaSalida),
+        DATE_FORMAT(CITA.FechaSalida, ' de %Y %H:%i:%s')
+    ) AS fecha_salida_completa,
+
+    -- Servicio
+    SERVICIO.Nombre AS nombre_servicio,
+
+    -- Empleado
+    CONCAT(EMPLEADO.Nombre, ' ', EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado 
+    
 FROM 
     CITA 
-JOIN CLIENTE ON CITA.IDCliente = CLIENTE.IDCliente 
-JOIN EMPLEADO ON CITA.IDEmpleado = EMPLEADO.IDEmpleado 
-JOIN SERVICIO ON CITA.IDServicio = SERVICIO.IDServicio;
+    JOIN CLIENTE ON CITA.IDCliente = CLIENTE.IDCliente 
+    JOIN EMPLEADO ON CITA.IDEmpleado = EMPLEADO.IDEmpleado 
+    JOIN SERVICIO ON CITA.IDServicio = SERVICIO.IDServicio;
+
+
 
 -- RELLENO TABLA PROVEEDOR --
 INSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
