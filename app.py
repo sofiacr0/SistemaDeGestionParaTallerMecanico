@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pymysql
 
 app = Flask(__name__)
@@ -31,23 +31,23 @@ def inventario():
     return render_template('inventario.html')
 
 
-@app.route('/citas')
+@app.route('/citas', methods=['GET', 'POST'])
 def citas():
-    try:
-        connection = get_db_connection()
-        with connection.cursor() as cursor:
-            cursor.execute('SELECT * FROM CITA')
-            result = cursor.fetchall()
+    if request.method == 'GET':
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM CITA')
+                result = cursor.fetchall()
 
-    except Exception as e:
-        print(f"Error en la base de datos: {e}")
-        result = None 
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None 
 
-    finally:
-        if connection:
-            connection.close()
-
-    return render_template('citas.html', data=result)
+        finally:
+            if connection:
+                connection.close()
+            return render_template('citas.html', data=result)
 
 if __name__ == '__main__':
     app.run(debug=True)

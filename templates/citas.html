@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,43 +14,86 @@
             border-collapse: collapse;
             width: 100%;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
         }
+
         th {
             background-color: #f2f2f2;
         }
     </style>
 </head>
-<body>
-    <h1>Resultados de la Consulta</h1>
-    
-    {% if data %}
-<table>
-    <tr>
-        <th>IDCita</th>
-        <th>IDCliente</th>
-        <th>FechaEntrada</th>
-        <th>FechaSalida</th>
-        <th>Servicio</th>
-        <th>Empleado</th>
-    </tr>
 
-    {% for row in data %}
-    <tr>
-        <td>{{ row[0] }}</td> 
-        <td>{{ row[1] }}</td> 
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-        <td>{{ row[5] }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% else %}
-<p>No hay resultados disponibles.</p>
-{% endif %}
+<body>
+    <h1>Citas</h1>
+
+    <!-- Botón para abrir el formulario -->
+    <button onclick="abrirFormulario()">Abrir Formulario</button>
+
+    <!-- Modal -->
+    <div id="miModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarFormulario()">&times;</span>
+
+            <!-- Formulario -->
+            <form action="/procesar_formulario" method="post">
+                <!-- Agrega aquí los campos de tu formulario -->
+                Nombre: <input type="text" name="nombre"><br>
+                Email: <input type="text" name="email"><br>
+                <!-- Agrega más campos según tu estructura de base de datos -->
+
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+
+    <!-- Agrega tu script JavaScript aquí -->
+    <script>
+        function abrirFormulario() {
+            document.getElementById("miModal").style.display = "block";
+        }
+
+        function cerrarFormulario() {
+            document.getElementById("miModal").style.display = "none";
+        }
+
+        // Cierra el modal si se hace clic fuera de él
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("miModal")) {
+                cerrarFormulario();
+            }
+        }
+    </script>
+
+    {% if data %}
+    <table>
+        <tr>
+            <th>IDCita</th>
+            <th>IDCliente</th>
+            <th>FechaEntrada</th>
+            <th>FechaSalida</th>
+            <th>Servicio</th>
+            <th>Empleado</th>
+        </tr>
+
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hay resultados disponibles.</p>
+    {% endif %}
 </body>
+
 </html>
