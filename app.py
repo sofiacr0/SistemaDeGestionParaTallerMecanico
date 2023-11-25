@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import pymysql
 
 app = Flask(__name__)
@@ -71,17 +71,21 @@ def citas():
                 cursor.execute(sql, (IDCliente, FechaEntrada,
                                FechaSalida, IDServicio, IDEmpleado))
             connection.commit()
-            mensaje = "Registro insertado correctamente"
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
         except Exception as e:
             connection.rollback()
-            mensaje = "Error al insertar el registro: " + str(e)
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
         finally:
             connection.close()
-        return mensaje
+        return jsonify(response)
 
     # PUT: Se utiliza para actualizar un recurso en el servidor. En Flask, puede ser utilizado para modificar información existente en el servidor.
+   
 
     # DELETE: Como su nombre indica, este método se utiliza para eliminar un recurso en el servidor.
+
 
 
 if __name__ == '__main__':
