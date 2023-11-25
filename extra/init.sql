@@ -154,7 +154,7 @@ VALUES
 (3, 'Maria', 'Martinez', 'Garcia', '555112233', 1, 1);
 
 -- RELLENO TABLA VEHICULO --
-INSERT INTO `VEHICULO` (`IDVehiculo`, `Marca`, `Modelo`, `Anio`, `Placa`, `Color`, `Cliente`) VALUES
+INSERT INTO `VEHICULO` (`IDVehiculo`, `Marca`, `Modelo`, `Anio`, `Placa`, `Color`, `IDCliente`) VALUES
 (1, 'Toyota', 2020, 1234, 'ABC123', 'Rojo', 1),
 (2, 'Ford', 2019, 5678, 'XYZ987', 'Azul', 2),
 (3, 'Honda', 2019, 1234, 'ABC-123', 'Azul', 3),

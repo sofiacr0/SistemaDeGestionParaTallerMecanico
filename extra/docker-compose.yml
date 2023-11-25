@@ -23,10 +23,9 @@ services:
       MYSQL_PASSWORD: user
     networks:
       - mynetwork
-    command: --bind-address=0.0.0.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --bind-address=0.0.0.0
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./my.cnf:/etc/mysql/conf.d/my.cnf
 
 networks:
   mynetwork:
