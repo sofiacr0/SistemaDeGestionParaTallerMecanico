@@ -1,3 +1,5 @@
+-- ULTIMA VERSION: 25 DE NOVIEMBRE DEL 2023 9:05 PM
+
 CREATE DATABASE IF NOT EXISTS TallerMecanico CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE TallerMecanico;
 
@@ -31,7 +33,7 @@ CREATE TABLE EMPLEADO (
     Apellido1 VARCHAR(50) NOT NULL,
     Apellido2 VARCHAR(50),
     Telefono VARCHAR(15),
-    Puesto INT,
+    IDPuesto INT,
     Estado BOOLEAN DEFAULT 1,
     FOREIGN KEY (IDPuesto) REFERENCES PUESTO(IDPuesto)
 );
@@ -170,7 +172,7 @@ SELECT
 FROM
     EMPLEADO
 JOIN
-    PUESTO ON EMPLEADO.Puesto = PUESTO.IDPuesto;
+    PUESTO ON EMPLEADO.IDPuesto = PUESTO.IDPuesto;
 
 -- VISTA CLIENTE
 CREATE VIEW vista_clientes AS
@@ -217,14 +219,14 @@ SELECT
     -- Color Vehiculo
     VEHICULO.Color AS color_vehiculo,
 
-    --Cliente
+    -- Cliente
     CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente
 FROM
     SERVICIO
 JOIN
-    EMPLEADO ON SERVICIO.Empleado = EMPLEADO.IDEmpleado
+    EMPLEADO ON SERVICIO.IDEmpleado = EMPLEADO.IDEmpleado
 JOIN
-    VEHICULO ON SERVICIO.Vehiculo = VEHICULO.IDVehiculo
+    VEHICULO ON SERVICIO.IDVehiculo = VEHICULO.IDVehiculo
 JOIN
     CLIENTE ON VEHICULO.IDVehiculo= CLIENTE.IDCliente;
 
@@ -273,7 +275,7 @@ SELECT
 FROM
    VEHICULO
 JOIN
-   CLIENTE ON VEHICULO.Cliente = CLIENTE.IDCliente;
+   CLIENTE ON VEHICULO.IDCliente = CLIENTE.IDCliente;
 
 -- VISTA PIEZA
 
@@ -320,7 +322,7 @@ SELECT
    PROVEEDOR.Telefono AS telefono_proveedor
 
 FROM PIEZA
-JOIN PROVEEDOR ON PROVEEDOR.IDProveedor = PIEZA.Proveedor;
+JOIN PROVEEDOR ON PROVEEDOR.IDProveedor = PIEZA.IDProveedor;
 
 -- RELLENO TABLA PROVEEDOR 
 INSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
