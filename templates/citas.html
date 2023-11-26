@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    
-    <!-- CSS -->
+
+    <!-- Estilos CSS -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
+
+    <!-- JavaScript  -->
+    <script src="{{ url_for('static', filename='citas.js') }}"></script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -35,7 +38,7 @@
     <!-- datetimepicker JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 
-    <!-- datetimepicker Archivo de localización para español -->
+    <!-- datetimepicker en español -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
 
     <title>Automaster - Sistema de gestión de citas</title>
@@ -53,10 +56,8 @@
     <div id="modalAñadirCita" class="modal">
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalAñadirCita()">&times;</span>
-
         <!-- Encabezado del formulario -->
         <h2>Añadir cita</h2>
-
         <!-- Formulario -->
         <form action="/citas" method="post" id="añadirCita">
           <!-- Campos del formulario -->
@@ -67,7 +68,6 @@
           <input type="text" name="FechaSalida" class="datetimepicker" /><br />
           ID del servicio: <input type="text" name="IDServicio" /><br />
           ID del empleado: <input type="text" name="IDEmpleado" /><br />
-
           <input type="submit" value="Enviar" />
         </form>
       </div>
@@ -79,10 +79,8 @@
         <span class="cerrar" onclick="cerrarModalActualizarCita()"
           >&times;</span
         >
-
         <!-- Encabezado del formulario -->
         <h2>Actualizar cita</h2>
-
         <!-- Formulario -->
         <form action="/citas" method="PUT" id="actualizarCita">
           <!-- Campos del formulario -->
@@ -94,7 +92,6 @@
           <input type="text" name="FechaSalida" class="datetimepicker" /><br />
           ID del servicio: <input type="text" name="IDServicio" /><br />
           ID del empleado: <input type="text" name="IDEmpleado" /><br />
-
           <input type="submit" value="Enviar" />
         </form>
       </div>
@@ -104,10 +101,8 @@
     <div id="modalEliminarCita" class="modal">
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalEliminarCita()">&times;</span>
-
         <!-- Encabezado del formulario -->
         <h2>Eliminar cita</h2>
-
         <!-- Formulario -->
         <form action="/citas" method="DELETE" id="eliminarCita">
           <!-- Campos del formulario -->
@@ -131,7 +126,6 @@
           <th>Empleado</th>
         </tr>
       </thead>
-
       <!-- Filas de la tabla -->
       <tbody>
         {% for row in data %}
@@ -149,8 +143,5 @@
     {% else %}
     <p>No hay resultados disponibles.</p>
     {% endif %}
-
-    <!-- Archivo de script JavaScript -->
-    <script src="{{ url_for('static', filename='citas.js') }}"></script>
   </body>
 </html>
