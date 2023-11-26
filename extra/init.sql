@@ -111,7 +111,7 @@ SELECT
     -- ID
     CITA.IDCita AS id_cita, 
     -- Cliente
-    CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente, 
+    CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS n1, 
    -- Entrada
     CONCAT(
         DATE_FORMAT(CITA.FechaEntrada, '%d de '),
@@ -188,9 +188,9 @@ SELECT
         VEHICULO.Modelo, ' ',
         VEHICULO.Placa, ' ',
         VEHICULO.Color
-    ) AS nombre_vehiculo
+    ) AS nombre_vehiculo,
      -- Cliente
-    CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente
+    CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS n3
 FROM
     SERVICIO
 JOIN
@@ -198,13 +198,13 @@ JOIN
 JOIN
     VEHICULO ON SERVICIO.IDVehiculo = VEHICULO.IDVehiculo
 JOIN
-    CLIENTE ON VEHICULO.IDVehiculo= CLIENTE.IDCliente;
+    CLIENTE ON VEHICULO.IDCliente= CLIENTE.IDCliente;
 
 -- VISTA VEHICULOS
 CREATE VIEW vista_vehiculos AS
 SELECT
    -- Nombre cliente
-   CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente,
+   CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS n4,
    -- ID Vehiculo
    VEHICULO.IDVehiculo AS id_vehiculo,
    -- Marca Vehiculo
@@ -222,7 +222,7 @@ SELECT
 FROM
    VEHICULO
 JOIN
-   CLIENTE ON VEHICULO.IDCliente = CLIENTE.IDCliente;
+    CLIENTE ON VEHICULO.IDCliente= CLIENTE.IDCliente;
 
 -- VISTA PIEZA
 CREATE VIEW vista_piezas AS
