@@ -64,7 +64,6 @@ CREATE TABLE PIEZA (
     Nombre VARCHAR(100) NOT NULL,
     CantidadEnStock INT,
     FechaAdquisicion DATE,
-    Estado BOOLEAN DEFAULT 1,
     PrecioCompra DECIMAL(10, 2),
     PrecioVenta DECIMAL(10, 2),
     IDProveedor INT,
