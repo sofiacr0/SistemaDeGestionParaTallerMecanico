@@ -12,7 +12,7 @@ function cerrarModalAñadirVehiculo() {
       var formData = $(this).serialize();
       $.ajax({
         type: "POST",
-        url: "/vehiculo",
+        url: "/vehiculos",
         data: formData,
         dataType: "json",
         success: function (response) {
@@ -41,7 +41,7 @@ $(document).ready(function () {
     var formData = $(this).serialize();
     $.ajax({
       type: "PUT",
-      url: "/vehiculo",
+      url: "/vehiculos",
       data: formData,
       dataType: "json",
       success: function (response) {
@@ -70,7 +70,7 @@ $(document).ready(function () {
     var formData = $(this).serialize();
     $.ajax({
       type: "DELETE",
-      url: "/vehiculo",
+      url: "/vehiculos",
       data: formData,
       dataType: "json",
       success: function (response) {
