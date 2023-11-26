@@ -406,7 +406,7 @@ def vehiculos():
             with connection.cursor() as cursor:
                 sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s "
                 cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente, IDVehiculo))
-
+                
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}

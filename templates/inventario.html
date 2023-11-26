@@ -10,9 +10,6 @@
 
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
-
-  <!-- JavaScript  -->
-  <script src="{{ url_for('static', filename='inventario.js') }}"></script>
   
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -131,5 +128,8 @@
   {% else %}
   <p>No hay resultados disponibles.</p>
   {% endif %}
+
+  <!-- JavaScript  -->
+  <script src="{{ url_for('static', filename='inventario.js') }}"></script>
 </body>
 </html>

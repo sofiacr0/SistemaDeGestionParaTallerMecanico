@@ -9,8 +9,68 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
+    
     <title>Automaster - Sistema de gestión de servicios</title>
   </head>
+  <body>
+    <h1>Sistema de gestión de servicios</h1>
+
+  <button onclick="abrirModalAñadirServicio()">Añadir servicio</button>
+  <button onclick="abrirModalActualizarServicio()">Actualizar servicio</button>
+  <button onclick="abrirModalEliminarServicio()">Eliminar servicio</button>
+
+  <div id="modalAñadirServicio" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalAñadirServicio()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Añadir Servicio</h2>
+      <!-- Formulario -->
+      <form action="/servicios" method="post" id="añadirServicio">
+        <!-- Campos del formulario -->
+        Nombre: <input type="text" name="Nombre" /><br />
+        Descripcion: <input type="text" name="Descripcion" /><br />
+        Costo: <input type="text" name="Costo" /><br />
+        Garantia: <input type="text" name="Garantia" /><br />
+        ID del Empleado: <input type="text" name="IDEmpleado" /><br />
+        ID del Vehiculo: <input type="text" name="IDVehiculo" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
+  <div id="modalActualizarServicio" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalActualizarServicio()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Actualizar Servicio</h2>
+      <!-- Formulario -->
+      <form action="/servicios" method="PUT" id="actualizarServicio">
+        <!-- Campos del formulario -->
+        ID del servicio: <input type="text" name="IDServicio" /><br />
+        Nombre: <input type="text" name="Nombre" /><br />
+        Descripcion: <input type="text" name="Descripcion" /><br />
+        Costo: <input type="text" name="Costo" /><br />
+        Garantia: <input type="text" name="Garantia" /><br />
+        ID del Empleado: <input type="text" name="IDEmpleado" /><br />
+        ID del Vehiculo: <input type="text" name="IDVehiculo" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
+  <div id="modalEliminarServicio" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalEliminarServicio()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Eliminar Servicio</h2>
+      <!-- Formulario -->
+      <form action="/servicios" method="post" id="eliminarServicio">
+        <!-- Campos del formulario -->
+        ID del servicio: <input type="text" name="IDServicio" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
 
   <!-- TABLA DE SERVICIOS -->
   {% if data %}
@@ -48,4 +108,7 @@
   {% else %}
   <p>No hay resultados disponibles.</p>
   {% endif %}
+   <!-- JavaScript  -->
+   <script src="{{ url_for('static', filename='servicio.js') }}"></script>
+</body>
 </html>
