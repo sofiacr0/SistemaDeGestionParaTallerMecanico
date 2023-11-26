@@ -41,7 +41,7 @@ def paneldecontrol():
 
 # SISTEMA DE GESTIÓN DE INVENTARIO
 
-@app.route('/inventario', methods = ['GET', 'POST'])
+@app.route('/inventario', methods = ['GET', 'POST', 'PUT', 'DELETE'])
 def inventario():
     # OBTENER TABLA
     if request.method == 'GET':
@@ -60,6 +60,31 @@ def inventario():
             return render_template('inventario.html', data=result)
      
     # AÑADIR ARTICULO
+    if request.method == 'POST':
+        Nombre = request.form['Nombre']
+        CantidadEnStock = request.form['CantidadEnStock']
+        FechaAdquisicion = request.form['FechaAdquisicion']
+        PrecioCompra = request.form['PrecioCompra']
+        PrecioVenta = request.form['PrecioVenta']
+        IDProveedor = request.form['IDProveedor']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO PIEZA (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor) VALUES (%s, %s, %s, %s, %s, %s)"
+                cursor.execute(sql, (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor))
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+    
     # ACTUALIZAR ARTICULO
     # ELIMINAR ARTICULO
 
