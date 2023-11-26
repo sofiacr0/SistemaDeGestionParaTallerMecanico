@@ -143,6 +143,35 @@ FROM
 
 -- VISTA EMPLEADO
 
+DROP TABLE IF EXISTS vista_empleado;
+
+CREATE VIEW vista_empleado AS
+SELECT
+
+    -- ID
+    EMPLEADO.IDEmpleado AS id_empleado,
+
+    -- Nombre Empleado
+    CONCAT(EMPLEADO.Nombre, ' ', EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado,
+
+    -- Telefono
+    EMPLEADO.Telefono,
+
+    -- Puesto
+    PUESTO.Nombre AS nombre_puesto,
+
+    -- Activo / Inactivo
+    CASE EMPLEADO.Estado
+        WHEN 1 THEN 'Activo'
+        WHEN 0 THEN 'Inactivo'
+        ELSE 'Desconocido'
+    END AS estado_empleado
+    
+FROM
+    EMPLEADO
+JOIN
+    PUESTO ON EMPLEADO.Puesto = PUESTO.IDPuesto;
+
 -- VISTA CLIENTE
 CREATE VIEW vista_clientes AS
 SELECT
@@ -151,6 +180,53 @@ SELECT
     Telefono,
     Email
 FROM CLIENTE;
+
+-- VISTA SERVICIO
+DROP TABLE IF EXISTS vista_servicio;
+
+CREATE VIEW vista_servicio AS
+SELECT
+
+    -- ID
+    SERVICIO.IDServicio AS id_servicio,
+
+    -- Nombre Servicio
+    SERVICIO.Nombre AS nombre_servicio,
+
+    -- Descripcion
+    SERVICIO.Descripcion,
+
+    -- Costo
+    SERVICIO.Costo,
+
+    -- Garantia
+    SERVICIO.Garantia,
+
+    -- Empleado
+    CONCAT(EMPLEADO.Nombre, ' ',EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado,
+
+    -- Marca Vehiculo
+    VEHICULO.Marca AS marca_vehiculo,
+
+    -- Modelo Vehiculo
+    VEHICULO.Modelo AS modelo_vehiculo,
+
+    -- Placa Vehiculo
+    VEHICULO.Placa AS placa_vehiculo,
+
+    -- Color Vehiculo
+    VEHICULO.Color AS color_vehiculo,
+
+    --Cliente
+    CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente
+FROM
+    SERVICIO
+JOIN
+    EMPLEADO ON SERVICIO.Empleado = EMPLEADO.IDEmpleado
+JOIN
+    VEHICULO ON SERVICIO.Vehiculo = VEHICULO.IDVehiculo
+JOIN
+    CLIENTE ON VEHICULO.IDVehiculo= CLIENTE.IDCliente;
 
 
 -- RELLENO TABLA PROVEEDOR 
