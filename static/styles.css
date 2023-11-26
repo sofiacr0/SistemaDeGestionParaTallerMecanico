@@ -2,6 +2,7 @@
 body, h1, h2, h3, p, ul {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 body {
@@ -74,7 +75,7 @@ footer {
     padding: 1rem;
 }
 
-/* CITAS.HTML */
+/* Estilos para modales */
 
 .modal {
     display: none;
@@ -116,12 +117,12 @@ footer {
 
 /* Estilos generales para la tabla */
 .table-container {
-    width: 80%;
+    width: 80%; /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     margin: auto;
 }
 
 table {
-    width: 100%;
+    width: 100%; /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -129,15 +130,25 @@ table {
 /* Estilos para el encabezado de la tabla */
 thead {
     background-color: #f0f0f0;
+    text-align: center; /* Alinea el texto en el encabezado al centro */
 }
 
 th, td {
     padding: 10px;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center; /* Alinea el texto en las celdas al centro */
 }
 
 /* Estilos alternados para las filas */
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+
+/* Estilos para las imagenes */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 16%;
+  }

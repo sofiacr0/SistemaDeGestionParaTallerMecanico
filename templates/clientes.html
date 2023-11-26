@@ -19,12 +19,15 @@
 
     <!-- jQuery UI CSS -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-    
+
     <title>Automaster - Clientes</title>
 </head>
 
 <body>
+    <img src="/static/logo250px.png" alt="automaster-logo">
+
     <h1>Sistema de gestión de clientes</h1>
+
     <!-- Botones -->
     <button onclick="abrirModalAñadir()">Añadir </button>
     <button onclick="abrirModalActualizar()">Actualizar </button>
@@ -86,30 +89,34 @@
 
 
     <!-- TABLA -->
-    {% if data %}
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Telefono</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[3] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p>No hay resultados disponibles.</p>
-    {% endif %}
+    <div class="table-container">
+        {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No hay resultados disponibles.</p>
+        {% endif %}
+
+    </div>
+
 
     <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='clientes.js') }}"></script>

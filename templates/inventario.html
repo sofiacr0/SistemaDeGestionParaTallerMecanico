@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,7 +11,7 @@
 
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
-  
+
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -35,7 +36,10 @@
 
   <title>Automaster - Inventario</title>
 </head>
+
 <body>
+  <img src="/static/logo250px.png" alt="automaster-logo">
+
   <h1>Sistema de gestión de inventario</h1>
 
   <button onclick="abrirModalAñadirArticulo()">Añadir articulo</button>
@@ -97,22 +101,24 @@
     </div>
   </div>
 
-  {% if data %}
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Stock</th>
-        <th>Fecha de aquisición</th>
-        <th>Precio de compra</th>
-        <th>Precio de venta</th>
-        <th>Proveedor</th>
-        <th>Teléfono del proveedor</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for row in data %}
+
+  <div class="table-container">
+    {% if data %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Stock</th>
+          <th>Fecha de aquisición</th>
+          <th>Precio de compra</th>
+          <th>Precio de venta</th>
+          <th>Proveedor</th>
+          <th>Teléfono del proveedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
         <tr>
           <td>{{ row[0] }}</td>
           <td>{{ row[1] }}</td>
@@ -124,13 +130,17 @@
           <td>{{ row[7] }}</td>
         </tr>
         {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-  <p>No hay resultados disponibles.</p>
-  {% endif %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No hay resultados disponibles.</p>
+    {% endif %}
+
+  </div>
+
 
   <!-- JavaScript  -->
   <script src="{{ url_for('static', filename='inventario.js') }}"></script>
 </body>
+
 </html>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon -->
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
@@ -33,10 +34,13 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
 
-    <title>Automaster - Vehículos</title>
-  </head>
-  <body>
-    <h1>Sistema de gestión de vehículos</h1>
+  <title>Automaster - Vehículos</title>
+</head>
+
+<body>
+  <img src="/static/logo250px.png" alt="automaster-logo">
+
+  <h1>Sistema de gestión de vehículos</h1>
 
   <button onclick="abrirModalAñadirVehiculo()">Añadir vehículo</button>
   <button onclick="abrirModalActualizarVehiculo()">Actualizar vehículo</button>
@@ -96,42 +100,45 @@
   </div>
 
   <!-- TABLA DE VEHICULOS -->
-  {% if data %}
-  <table>
-    <!-- Cabecera de la tabla -->
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Año</th>
-        <th>Placa</th>
-        <th>Color</th>
-        <th>Cliente</th>
-      </tr>
-    </thead>
+  <div class="table-container">
+    {% if data %}
+    <table>
+      <!-- Cabecera de la tabla -->
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Año</th>
+          <th>Placa</th>
+          <th>Color</th>
+          <th>Cliente</th>
+        </tr>
+      </thead>
 
-    <!-- Filas de la tabla -->
+      <!-- Filas de la tabla -->
 
-    <tbody>
-      {% for row in data %}
-      <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-        <td>{{ row[5] }}</td>
-        <td>{{ row[6] }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-  <p>No hay resultados disponibles.</p>
-  {% endif %}
+      <tbody>
+        {% for row in data %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[4] }}</td>
+          <td>{{ row[5] }}</td>
+          <td>{{ row[6] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No hay resultados disponibles.</p>
+    {% endif %}
+  </div>
 
-   <!-- JavaScript  -->
-   <script src="{{ url_for('static', filename='vehiculo.js') }}"></script>
+  <!-- JavaScript  -->
+  <script src="{{ url_for('static', filename='vehiculo.js') }}"></script>
 </body>
+
 </html>
