@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import pymysql
 
 app = Flask(__name__)
@@ -26,8 +26,18 @@ def test():
 
 # LOGIN
 @app.route('/login')
-def home():
-    return render_template('login.html')
+def login():
+    # Obtén los datos del formulario
+    username = request.form['username']
+    password = request.form['password']
+
+    # Realiza la validación (puedes cambiar esto según tus necesidades)
+    if username == 'usuario_valido' and password == 'contraseña_valida':
+        # Redirige a la página de paneldecontrol.html
+        return redirect(url_for('paneldecontrol'))
+    else:
+        # Maneja el caso de credenciales incorrectas (puedes personalizar este mensaje)
+        return "Credenciales incorrectas"
 
 
 # PANEL DE CONTROL
