@@ -97,8 +97,8 @@ def inventario():
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE PIEZA SET Nombre=%s, CantidadEnStock=%s, FechaAdquisicion=%s, PrecioCompra=%s, PrecioVenta=%s, IDProveedor=%s WHERE IDPieza=%s"
-                cursor.execute(sql, (IDPieza, Nombre, CantidadEnStock, 
-                                     FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor))
+                cursor.execute(sql, (Nombre, CantidadEnStock, 
+                                     FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor, IDPieza))
 
             connection.commit()
             response = {'status': 'success',
