@@ -162,7 +162,7 @@ img {
   }
 
 /* Estilos para los botones */
-  .button {
+button {
     background-color: #000;
     color: #fff;
     font-size: 16px;
