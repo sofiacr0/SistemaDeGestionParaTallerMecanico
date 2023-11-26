@@ -253,7 +253,7 @@ def empleados():
 
 
 # SISTEMA DE GESTIÓN DE CLIENTES
-@app.route('/clientes')
+@app.route('/clientes', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def clientes():
     # OBTIENE REGISTROS
     if request.method == 'GET':
@@ -271,6 +271,17 @@ def clientes():
             if connection:
                 connection.close()
             return render_template('clientes.html', data=result)
+    # AÑADE
+    if request.method == 'POST':
+        pass
+
+    # ACTUALIZA REGISTROS
+    if request.method == 'PUT':
+        pass
+
+    # ELIMINA REGISTROS
+    if request.method == 'DELETE':
+        pass
 
 
 # SISTEMA DE GESTIÓN DE VEHICULOS
