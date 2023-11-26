@@ -404,9 +404,8 @@ def vehiculos():
 
         try:
             with connection.cursor() as cursor:
-                sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s"
-                cursor.execute(sql, (Marca, Modelo, Anio,
-                               Placa, Color, IDCliente, IDVehiculo))
+                sql = "UPDATE VEHICULO SET Marca = %s, Modelo = %s, Anio = %s, Placa = %s, Color = %s, IDCliente = %s WHERE IDVehiculo = %s;"
+                cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente, IDVehiculo))
 
             connection.commit()
             response = {'status': 'success',
@@ -503,8 +502,7 @@ def servicios():
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE SERVICIO SET Nombre=%s, Descripcion=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s"
-                cursor.execute(sql, (Nombre, Descripcion, Costo,
-                               Garantia, IDEmpleado, IDVehiculo, IDServicio))
+                cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo, IDServicio))
 
             connection.commit()
             response = {'status': 'success',
