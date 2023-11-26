@@ -18,16 +18,9 @@ def get_db_connection():
     return pymysql.connect(**db_config)
 
 
-# ESTO SE VA A ELIMINAR, SOLO ES PARA TENER TODAS LAS PAGINAS A LA MANO Y CHECARLAS MAS RAPIDO
-@app.route('/')
-def test():
-    return render_template('test.html')
-
-
 # LOGIN
-@app.route('/login', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def login():
-    #return render_template('login.html')
     if request.method == 'POST':
         try:
             # Obtén los datos del formulario
