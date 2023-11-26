@@ -248,6 +248,84 @@ def empleados():
             if connection:
                 connection.close()
             return render_template('empleados.html', data=result)
+        
+    # AÑADIR ARTICULO
+    if request.method == 'POST':
+        Nombre = request.form['Nombre']
+        Apellido1 = request.form['Apellido1']
+        Apellido2 = request.form['Apellido2']
+        Telefono = request.form['Telefono']
+        IDPuesto = request.form['IDPuesto']
+        Estado = request.form['Estado']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO EMPLEADO (Nombre, Apellido1, Apellido2, Telefono, IDPuesto, Estado) VALUES (%s, %s, %s, %s, %s, %s)"
+                cursor.execute(sql, (Nombre, Apellido1,
+                                Apellido2, Telefono, IDPuesto, Estado))
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ACTUALIZAR ARTICULO
+    if request.method == 'PUT':
+        IDEmpleado = request.form['IDEmpleado']
+        Nombre = request.form['Nombre']
+        Apellido1 = request.form['Apellido1']
+        Apellido2 = request.form['Apellido2']
+        Telefono = request.form['Telefono']
+        IDPuesto = request.form['IDPuesto']
+        Estado = request.form['Estado']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "UPDATE EMPLEADO SET Nombre=%s, Apellido1=%s, Apellido2=%s, Telefono=%s, IDPuesto=%s, Estado=%s WHERE IDEmpleado=%s"
+                cursor.execute(sql, (Nombre, Apellido1, Apellido2,
+                               Telefono, IDPuesto, Estado, IDEmpleado))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro actualizado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al actualizar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ELIMINAR ARTICULO
+    if request.method == 'DELETE':
+        IDEmpleado = request.form['IDEmpleado']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM EMPLEADO WHERE IDEmpleado = %s"
+                cursor.execute(sql, (IDEmpleado))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 # SISTEMA DE GESTIÓN DE CLIENTES

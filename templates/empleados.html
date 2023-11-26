@@ -9,11 +9,90 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- jQuery UI JS -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+  <!-- datetimepicker JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+  <!-- datetimepicker CSS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
+
+
+  <!-- datetimepicker en español -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
+
     <title>Automaster - Sistema de gestión de empleados</title>
   </head>
 
   <body>
     <h1>Sistema de gestión de empleados</h1>
+    <button onclick="abrirModalAñadirEmpleado()">Añadir empleado</button>
+    <button onclick="abrirModalActualizarEmpleado()">Actualizar empleado</button>
+    <button onclick="abrirModalEliminarEmpleado()">Eliminar empleado</button>
+  
+    <div id="modalAñadirEmpleado" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalAñadirEmpleado()">&times;</span>
+        <!-- Encabezado del formulario -->
+        <h2>Añadir Empleado</h2>
+        <!-- Formulario -->
+        <form action="/empleados" method="post" id="añadirEmpleado">
+          <!-- Campos del formulario -->
+          Nombre: <input type="text" name="Nombre" /><br />
+          Primer apellido: <input type="text" name="Apellido1" /><br />
+          Segundo apellido: <input type="text" name="Apellido2" /><br />
+          Telefono: <input type="text" name="Telefono" /><br />
+          ID del Puesto: <input type="text" name="IDPuesto" /><br />
+          Estado: <input type="text" name="Estado" /><br />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
+  
+    <div id="modalActualizarEmpleado" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalActualizarEmpleado()">&times;</span>
+        <!-- Encabezado del formulario -->
+        <h2>Actualizar Empleado</h2>
+        <!-- Formulario -->
+        <form action="/empleados" method="PUT" id="actualizarEmpleado">
+          <!-- Campos del formulario -->
+          ID del empleado: <input type="text" name="IDEmpleado" /><br />
+          Nombre: <input type="text" name="Nombre" /><br />
+          Primer apellido: <input type="text" name="Apellido1" /><br />
+          Segundo apellido: <input type="text" name="Apellido2" /><br />
+          Telefono: <input type="text" name="Telefono" /><br />
+          ID del Puesto: <input type="text" name="IDPuesto" /><br />
+          Estado: <input type="text" name="Estado" /><br />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
+  
+    <div id="modalEliminarEmpleado" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalEliminarEmpleado()">&times;</span>
+        <!-- Encabezado del formulario -->
+        <h2>Eliminar Empleado</h2>
+        <!-- Formulario -->
+        <form action="/empleados" method="DELETE" id="eliminarEmpleado">
+          <!-- Campos del formulario -->
+          ID del empleado: <input type="text" name="IDEmpleado" /><br />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
+
     <!-- TABLA DE EMPLEADOS -->
     {% if data %}
     <table>
@@ -49,5 +128,7 @@
     {% else %}
     <p>No hay resultados disponibles.</p>
     {% endif %}
+ <!-- JavaScript  -->
+ <script src="{{ url_for('static', filename='empleados.js') }}"></script>
   </body>
 </html>
