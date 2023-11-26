@@ -83,7 +83,55 @@ def inventario():
         return jsonify(response)
 
     # ACTUALIZAR ARTICULO
+    if request.method == 'PUT':
+        IDPieza = request.form['IDPieza']
+        Nombre = request.form['Nombre']
+        CantidadEnStock = request.form['CantidadEnStock']
+        FechaAdquisicion = request.form['FechaAdquisicion']
+        PrecioCompra = request.form['PrecioCompra']
+        PrecioVenta = request.form['PrecioVenta']
+        IDProveedor = request.form['IDProveedor']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "UPDATE PIEZA SET Nombre=%s, CantidadEnStock=%s, FechaAdquisicion=%s, PrecioCompra=%s, PrecioVenta=%s, IDProveedor=%s WHERE IDPieza=%s"
+                cursor.execute(sql, (IDPieza, Nombre, CantidadEnStock, 
+                                     FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro actualizado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al actualizar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
     # ELIMINAR ARTICULO
+    if request.method == 'DELETE':
+        IDPieza = request.form['IDPieza']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM PIEZA WHERE IDPieza = %s"
+                cursor.execute(sql, (IDPieza))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 # SISTEMA DE GESTIÓN DE CITAS
