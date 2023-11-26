@@ -350,7 +350,6 @@ def vehiculos():
     # OBTIENE REGISTROS
     if request.method == 'GET':
         connection = None
-
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
@@ -390,7 +389,7 @@ def vehiculos():
             connection.close()
         return jsonify(response)
 
-    # ACTUALIZAR REGISTROS
+   # ACTUALIZAR ARTICULO
     if request.method == 'PUT':
         IDVehiculo = request.form['IDVehiculo']
         Marca = request.form['Marca']
@@ -404,8 +403,9 @@ def vehiculos():
 
         try:
             with connection.cursor() as cursor:
-                sql = "UPDATE VEHICULO SET Marca = %s, Modelo = %s, Anio = %s, Placa = %s, Color = %s, IDCliente = %s WHERE IDVehiculo = %s;"
-                cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente, IDVehiculo))
+                sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s"
+                cursor.execute(sql, (Marca, Modelo, Anio,
+                               Placa, Color, IDCliente, IDVehiculo))
 
             connection.commit()
             response = {'status': 'success',
@@ -418,7 +418,7 @@ def vehiculos():
             connection.close()
         return jsonify(response)
 
-    # ELIMINAR REGISTROS
+    # ELIMINAR ARTICULO
     if request.method == 'DELETE':
         IDVehiculo = request.form['IDVehiculo']
 
