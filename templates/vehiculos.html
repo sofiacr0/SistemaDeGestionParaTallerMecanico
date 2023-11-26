@@ -4,13 +4,76 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+
+  <!-- JavaScript  -->
+  <script src="{{ url_for('static', filename='vehiculo.js') }}"></script>
     <title>Automaster - Sistema de gestión de vehículos</title>
   </head>
+  <body>
+    <h1>Sistema de gestión de inventario</h1>
+
+  <button onclick="abrirModalAñadirVehiculo()">Añadir vehiculo</button>
+  <button onclick="abrirModalActualizarVehiculo()">Actualizar vehiculo</button>
+  <button onclick="abrirModalEliminarVehiculo()">Eliminar vehiculo</button>
+
+  <div id="modalAñadirVehiculo" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalAñadirVehiculo()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Añadir Vehiculo</h2>
+      <!-- Formulario -->
+      <form action="/vehiculo" method="post" id="añadirVehiculo">
+        <!-- Campos del formulario -->
+        Marca: <input type="text" name="Nombre" /><br />
+        Modelo: <input type="text" name="Modelo" /><br />
+        Anio: <input type="text" name="Anio" /><br />
+        Placa: <input type="text" name="Placa" /><br />
+        Color: <input type="text" name="Color" /><br />
+        IDCliente: <input type="text" name="IDCliente" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
+  <div id="modalActualizarVehiculo" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalActualizarVehiculo()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Actualizar Vehiculo</h2>
+      <!-- Formulario -->
+      <form action="/vehiculo" method="PUT" id="actualizarVehiculo">
+        <!-- Campos del formulario -->
+        ID del vehiculo: <input type="text" name="IDVehiculo" /><br />
+        Marca: <input type="text" name="Nombre" /><br />
+        Modelo: <input type="text" name="Modelo" /><br />
+        Anio: <input type="text" name="Anio" /><br />
+        Placa: <input type="text" name="Placa" /><br />
+        Color: <input type="text" name="Color" /><br />
+        IDCliente: <input type="text" name="IDCliente" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
+  <div id="modalEliminarVehiculo" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalEliminarVehiculo()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Eliminar Vehiculo</h2>
+      <!-- Formulario -->
+      <form action="/vehiculo" method="post" id="eliminarVehiculo">
+        <!-- Campos del formulario -->
+        ID del vehiculo: <input type="text" name="IDVehiculo" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
 
   <!-- TABLA DE VEHICULOS -->
   {% if data %}
@@ -47,4 +110,5 @@
   {% else %}
   <p>No hay resultados disponibles.</p>
   {% endif %}
+</body>
 </html>

@@ -363,6 +363,82 @@ def vehiculos():
             if connection:
                 connection.close()
             return render_template('vehiculos.html', data=result)
+        
+    # AÑADIR REGISTROS
+    if request.method == 'POST':
+        Marca = request.form['Marca']
+        Modelo = request.form['Modelo']
+        Anio = request.form['Anio']
+        Placa = request.form['Placa']
+        Color = request.form['Color']
+        IDCliente = request.form['IDCliente']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, IDCliente) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente))
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ACTUALIZAR REGISTROS
+    if request.method == 'PUT':
+        IDVehiculo = request.form['IDVehiculo'] 
+        Marca = request.form['Marca']
+        Modelo = request.form['Modelo']
+        Anio = request.form['Anio']
+        Placa = request.form['Placa']
+        Color = request.form['Color']
+        IDCliente = request.form['IDCliente']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s "
+                cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente, IDVehiculo))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro actualizado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al actualizar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ELIMINAR REGISTROS
+    if request.method == 'DELETE':
+        IDVehiculo = request.form['IDVehiculo']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM VEHICULO WHERE IDVehiculo = %s"
+                cursor.execute(sql, (IDVehiculo))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 # SISTEMA DE GESTIÓN DE SERVICIOS
@@ -384,6 +460,81 @@ def servicios():
             if connection:
                 connection.close()
             return render_template('servicios.html', data=result)
+            # AÑADIR REGISTROS
+    if request.method == 'POST':
+        Nombre = request.form['Nombre']
+        Descripcion = request.form['Descripcion']
+        Costo = request.form['Costo']
+        Garantia = request.form['Garantia']
+        IDEmpleado = request.form['IDEmpleado']
+        IDVehiculo = request.form['IDVehiculo']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo))
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ACTUALIZAR REGISTROS
+    if request.method == 'PUT':
+        IDServicio = request.form['IDServicio']
+        Nombre = request.form['Nombre']
+        Descripcion = request.form['Descripcion']
+        Costo = request.form['Costo']
+        Garantia = request.form['Garantia']
+        IDEmpleado = request.form['IDEmpleado']
+        IDVehiculo = request.form['IDVehiculo']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "UPDATE SERVICIO SET Nombre=%s, Descripcio=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s "
+                cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo, IDServicio))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro actualizado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al actualizar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ELIMINAR REGISTROS
+    if request.method == 'DELETE':
+        IDServicio = request.form['IDServicio']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM SERVICIO WHERE IDServicio = %s"
+                cursor.execute(sql, (IDServicio))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 if __name__ == '__main__':
