@@ -106,37 +106,28 @@ VALUES
     ('December', 'diciembre');
 
 -- VISTA CITAS 
-DROP TABLE IF EXISTS vista_citas;
-
 CREATE VIEW vista_citas AS 
 SELECT 
     -- ID
     CITA.IDCita AS id_cita, 
-
     -- Cliente
     CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente, 
-
    -- Entrada
     CONCAT(
         DATE_FORMAT(CITA.FechaEntrada, '%d de '),
         (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(CITA.FechaEntrada)),
         DATE_FORMAT(CITA.FechaEntrada, ' de %Y %H:%i:%s')
     ) AS fecha_entrada_completa,
-
     -- Salida
     CONCAT(
         DATE_FORMAT(CITA.FechaSalida, '%d de '),
         (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(CITA.FechaSalida)),
         DATE_FORMAT(CITA.FechaSalida, ' de %Y %H:%i:%s')
     ) AS fecha_salida_completa,
-
-
     -- Servicio
     SERVICIO.Nombre AS nombre_servicio,
-
     -- Empleado
-    CONCAT(EMPLEADO.Nombre, ' ', EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado 
-    
+    CONCAT(EMPLEADO.Nombre, ' ', EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado  
 FROM 
     CITA 
     JOIN CLIENTE ON CITA.IDCliente = CLIENTE.IDCliente 
@@ -144,31 +135,22 @@ FROM
     JOIN SERVICIO ON CITA.IDServicio = SERVICIO.IDServicio;
 
 -- VISTA EMPLEADO
-
-DROP TABLE IF EXISTS vista_empleado;
-
-CREATE VIEW vista_empleado AS
+CREATE VIEW vista_empleados AS
 SELECT
-
     -- ID
     EMPLEADO.IDEmpleado AS id_empleado,
-
     -- Nombre Empleado
     CONCAT(EMPLEADO.Nombre, ' ', EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado,
-
     -- Telefono
     EMPLEADO.Telefono,
-
     -- Puesto
     PUESTO.Nombre AS nombre_puesto,
-
     -- Activo / Inactivo
     CASE EMPLEADO.Estado
         WHEN 1 THEN 'Activo'
         WHEN 0 THEN 'Inactivo'
         ELSE 'Desconocido'
     END AS estado_empleado
-    
 FROM
     EMPLEADO
 JOIN
@@ -184,42 +166,30 @@ SELECT
 FROM CLIENTE;
 
 -- VISTA SERVICIO
-DROP TABLE IF EXISTS vista_servicio;
+DROP TABLE IF EXISTS vista_servicios;
 
-CREATE VIEW vista_servicio AS
+CREATE VIEW vista_servicios AS
 SELECT
-
     -- ID
     SERVICIO.IDServicio AS id_servicio,
-
     -- Nombre Servicio
     SERVICIO.Nombre AS nombre_servicio,
-
     -- Descripcion
     SERVICIO.Descripcion,
-
     -- Costo
     SERVICIO.Costo,
-
     -- Garantia
     SERVICIO.Garantia,
-
     -- Empleado
     CONCAT(EMPLEADO.Nombre, ' ',EMPLEADO.Apellido1, ' ', EMPLEADO.Apellido2) AS nombre_empleado,
-
-    -- Marca Vehiculo
-    VEHICULO.Marca AS marca_vehiculo,
-
-    -- Modelo Vehiculo
-    VEHICULO.Modelo AS modelo_vehiculo,
-
-    -- Placa Vehiculo
-    VEHICULO.Placa AS placa_vehiculo,
-
-    -- Color Vehiculo
-    VEHICULO.Color AS color_vehiculo,
-
-    -- Cliente
+    -- Vehiculo
+    CONCAT(
+        VEHICULO.Marca, ' ',
+        VEHICULO.Modelo, ' ',
+        VEHICULO.Placa, ' ',
+        VEHICULO.Color
+    ) AS nombre_vehiculo
+     -- Cliente
     CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente
 FROM
     SERVICIO
@@ -230,97 +200,53 @@ JOIN
 JOIN
     CLIENTE ON VEHICULO.IDVehiculo= CLIENTE.IDCliente;
 
--- VISTA VEHICULO
-
-
-DROP TABLE IF EXISTS vista_vehiculo;
-
-
-CREATE VIEW vista_vehiculo AS
+-- VISTA VEHICULOS
+CREATE VIEW vista_vehiculos AS
 SELECT
-
-
    -- Nombre cliente
    CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente,
-
-
    -- ID Vehiculo
    VEHICULO.IDVehiculo AS id_vehiculo,
-
-
    -- Marca Vehiculo
    VEHICULO.Marca,
-
-
    -- Modelo Vehiculo
    VEHICULO.Modelo,
-
-
    -- Año Vehiculo
    VEHICULO.Anio,
-
-
    -- Placa Vehiculo
    VEHICULO.Placa,
-
-
    -- Color Vehiculo
    VEHICULO.Color,
-
-
    -- Telefono Cliente (Si se lo quieren quitar, nomas lo puse por libertad creativa :))
    CLIENTE.Telefono AS numero_cliente
-
-
 FROM
    VEHICULO
 JOIN
    CLIENTE ON VEHICULO.IDCliente = CLIENTE.IDCliente;
 
 -- VISTA PIEZA
-
-DROP TABLE IF EXISTS vista_piezas;
-
-
 CREATE VIEW vista_piezas AS
 SELECT
-
-
    -- ID
    PIEZA.IDPieza,
-
-
    -- Nombre
    PIEZA.Nombre,
-
-
    -- Cantidad
    PIEZA.CantidadEnStock,
-
-
    -- Fecha de adquisicion
    CONCAT(
    DATE_FORMAT(PIEZA.FechaAdquisicion, '%d de '),
    (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(PIEZA.FechaAdquisicion)),
    DATE_FORMAT(PIEZA.FechaAdquisicion, ' de %Y')
    ) AS FechaAdquisicion,
-
-
    -- Precio de compra
    PIEZA.PrecioCompra,
-
-
    -- Precio de venta
    PIEZA.PrecioVenta,
-
-
    -- Nombre proveedor
    PROVEEDOR.Nombre AS nombre_proveedor,
-
-
    -- Telefono proveedor
    PROVEEDOR.Telefono AS telefono_proveedor
-
 FROM PIEZA
 JOIN PROVEEDOR ON PROVEEDOR.IDProveedor = PIEZA.IDProveedor;
 

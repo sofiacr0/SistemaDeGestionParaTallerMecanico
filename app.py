@@ -45,7 +45,7 @@ def inventario():
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute('SELECT * FROM PIEZA')
+                cursor.execute('SELECT * FROM vista_piezas')
                 result = cursor.fetchall()
         except Exception as e:
             print(f"Error en la base de datos: {e}")
@@ -239,7 +239,7 @@ def empleados():
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute('SELECT * FROM EMPLEADO')
+                cursor.execute('SELECT * FROM vista_empleados')
                 result = cursor.fetchall()
         except Exception as e:
             print(f"Error en la base de datos: {e}")
@@ -431,7 +431,7 @@ def vehiculos():
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute('SELECT * FROM VEHICULO')
+                cursor.execute('SELECT * FROM vista_vehiculos')
                 result = cursor.fetchall()
         except Exception as e:
             print(f"Error en la base de datos: {e}")
@@ -529,7 +529,7 @@ def servicios():
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute('SELECT * FROM SERVICIO')
+                cursor.execute('SELECT * FROM vista_servicios')
                 result = cursor.fetchall()
         except Exception as e:
             print(f"Error en la base de datos: {e}")
