@@ -15,6 +15,61 @@
   <button onclick="abrirModalActualizarArticulo()">Actualizar articulo</button>
   <button onclick="abrirModalEliminarArticulo()">Eliminar articulo</button>
 
+  <div id="modalAñadirArticulo" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalAñadirArticulo()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Añadir Articulo</h2>
+      <!-- Formulario -->
+      <form action="/inventario" method="post" id="añadirArticulo">
+        <!-- Campos del formulario -->
+        Nombre: <input type="text" name="Nombre" /><br />
+        Cantidad en Stock: <input type="text" name="CantidadEnStock" /><br />
+        Fecha de Adquisicion:
+        <input type="text" name="FechaAdquisicion" class="datetimepicker" /><br />
+        Precio de compra: <input type="text" name="PrecioCompra" /><br />
+        Precio de venta: <input type="text" name="PrecioVenta" /><br />
+        ID del Proveedor: <input type="text" name="IDProveedor" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
+  <div id="modalActualizarArticulo" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalActualizarArticulo()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Actualizar Articulo</h2>
+      <!-- Formulario -->
+      <form action="/inventario" method="PUT" id="actualizarArticulo">
+        <!-- Campos del formulario -->
+        ID del articulo: <input type="text" name="IDPieza" /><br />
+        Nombre: <input type="text" name="Nombre" /><br />
+        Cantidad en Stock: <input type="text" name="CantidadEnStock" /><br />
+        Fecha de Adquisicion:
+        <input type="text" name="FechaAdquisicion" class="datetimepicker" /><br />
+        Precio de compra: <input type="text" name="PrecioCompra" /><br />
+        Precio de venta: <input type="text" name="PrecioVenta" /><br />
+        ID del Proveedor: <input type="text" name="IDProveedor" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
+  <div id="modalEliminarArticulo" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalEliminarArticulo()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Eliminar Articulo</h2>
+      <!-- Formulario -->
+      <form action="/inventario" method="post" id="eliminarArticulo">
+        <!-- Campos del formulario -->
+        ID del articulo: <input type="text" name="IDPieza" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+
   {% if data %}
   <table>
     <thead>
@@ -23,7 +78,6 @@
         <th>Nombre</th>
         <th>CantidadEnStock</th>
         <th>FechaAdquisicion</th>
-        <th>Estado</th>
         <th>PrecioCompra</th>
         <th>PrecioVenta</th>
         <th>IDProveedor</th>
@@ -40,7 +94,6 @@
           <td>{{ row[5] }}</td>
           <td>{{ row[6] }}</td>
           <td>{{ row[7] }}</td>
-          <td>{{ row[8] }}</td>
         </tr>
         {% endfor %}
     </tbody>

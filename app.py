@@ -39,8 +39,9 @@ def paneldecontrol():
 
 # SISTEMA DE GESTIÓN DE INVENTARIO
 
-@app.route('/inventario', methods = ['GET'])
+@app.route('/inventario', methods = ['GET', 'POST'])
 def inventario():
+    # OBTENER TABLA
     if request.method == 'GET':
         connection = None  
         try:
@@ -54,7 +55,11 @@ def inventario():
         finally:
             if connection:
                 connection.close()
-    return render_template('inventario.html', data=result)
+            return render_template('inventario.html', data=result)
+     
+    # AÑADIR ARTICULO
+    # ACTUALIZAR ARTICULO
+    # ELIMINAR ARTICULO
 
 # SISTEMA DE GESTIÓN DE CITAS
 

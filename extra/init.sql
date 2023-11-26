@@ -64,7 +64,6 @@ CREATE TABLE PIEZA (
     Nombre VARCHAR(100) NOT NULL,
     CantidadEnStock INT,
     FechaAdquisicion DATE,
-    Estado BOOLEAN DEFAULT 1,
     PrecioCompra DECIMAL(10, 2),
     PrecioVenta DECIMAL(10, 2),
     IDProveedor INT,
@@ -205,11 +204,11 @@ INSERT INTO SERVICIO (IDServicio, Nombre, Descripcion, Costo, Garantia, IDEmplea
 (3, 'Reemplazo de neumaticos', 'Reemplazo de neumaticos: Instalacion experta para un rendimiento optimo y seguridad en la carretera.', 500.00, 'Garantia 8 meses', 3, 3);
 
 -- RELLENO TABLA PIEZA
-INSERT INTO PIEZA (IDPieza, Nombre, CantidadEnStock, FechaAdquisicion, Estado, PrecioCompra, PrecioVenta, IDProveedor) 
+INSERT INTO PIEZA (IDPieza, Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor) 
 VALUES
-(1, 'Filtro de aceite', 100, '2023-01-15', 1, 5.00, 10.00, 1),
-(2, 'Pastillas de freno', 50, '2023-02-20', 1, 10.00, 20.00, 2),
-(3, 'Bateria para carro', 5, '2023-08-25', 1, 2500.00, 3000.00, 1);
+(1, 'Filtro de aceite', 100, '2023-01-15', 5.00, 10.00, 1),
+(2, 'Pastillas de freno', 50, '2023-02-20', 10.00, 20.00, 2),
+(3, 'Bateria para carro', 5, '2023-08-25', 2500.00, 3000.00, 1);
 
 -- RELLENO TABLA CITA
 INSERT INTO CITA (IDCita, IDCliente, FechaEntrada, FechaSalida, IDServicio, IDEmpleado) 
