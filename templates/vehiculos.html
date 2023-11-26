@@ -16,11 +16,11 @@
     <title>Automaster - Sistema de gestión de vehículos</title>
   </head>
   <body>
-    <h1>Sistema de gestión de inventario</h1>
+    <h1>Sistema de gestión de vehículos</h1>
 
-  <button onclick="abrirModalAñadirVehiculo()">Añadir vehiculo</button>
-  <button onclick="abrirModalActualizarVehiculo()">Actualizar vehiculo</button>
-  <button onclick="abrirModalEliminarVehiculo()">Eliminar vehiculo</button>
+  <button onclick="abrirModalAñadirVehiculo()">Añadir vehículo</button>
+  <button onclick="abrirModalActualizarVehiculo()">Actualizar vehículo</button>
+  <button onclick="abrirModalEliminarVehiculo()">Eliminar vehículo</button>
 
   <div id="modalAñadirVehiculo" class="modal">
     <div class="modal-contenido">
@@ -30,7 +30,7 @@
       <!-- Formulario -->
       <form action="/vehiculos" method="post" id="añadirVehiculo">
         <!-- Campos del formulario -->
-        Marca: <input type="text" name="Nombre" /><br />
+        Marca: <input type="text" name="Marca" /><br />
         Modelo: <input type="text" name="Modelo" /><br />
         Anio: <input type="text" name="Anio" /><br />
         Placa: <input type="text" name="Placa" /><br />

@@ -231,7 +231,7 @@ def citas():
 
 
 # SISTEMA DE GESTIÓN DE EMPLEADOS
-@app.route('/empleados')
+@app.route('/empleados', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def empleados():
     # OBTIENE REGISTROS
     if request.method == 'GET':
@@ -345,7 +345,7 @@ def clientes():
 
 
 # SISTEMA DE GESTIÓN DE VEHICULOS
-@app.route('/vehiculos')
+@app.route('/vehiculos', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def vehiculos():
     # OBTIENE REGISTROS
     if request.method == 'GET':
@@ -442,7 +442,7 @@ def vehiculos():
 
 
 # SISTEMA DE GESTIÓN DE SERVICIOS
-@app.route('/servicios')
+@app.route('/servicios', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def servicios():
     # OBTIENE REGISTROS
     if request.method == 'GET':
@@ -460,7 +460,8 @@ def servicios():
             if connection:
                 connection.close()
             return render_template('servicios.html', data=result)
-            # AÑADIR REGISTROS
+        
+     # AÑADIR REGISTROS
     if request.method == 'POST':
         Nombre = request.form['Nombre']
         Descripcion = request.form['Descripcion']
