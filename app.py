@@ -427,7 +427,7 @@ def vehiculos():
 
         try:
             with connection.cursor() as cursor:
-                sql = "DELETE FROM Vehiculo WHERE IDVehiculo = %s"
+                sql = "DELETE FROM VEHICULO WHERE IDVehiculo = %s"
                 cursor.execute(sql, (IDVehiculo))
 
             connection.commit()
@@ -502,7 +502,7 @@ def servicios():
 
         try:
             with connection.cursor() as cursor:
-                sql = "UPDATE PIEZA SET Nombre=%s, Descripcion=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s"
+                sql = "UPDATE SERVICIO SET Nombre=%s, Descripcion=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s"
                 cursor.execute(sql, (Nombre, Descripcion, Costo,
                                Garantia, IDEmpleado, IDVehiculo, IDServicio))
 
