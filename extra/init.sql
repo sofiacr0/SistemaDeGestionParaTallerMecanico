@@ -31,7 +31,7 @@ CREATE TABLE EMPLEADO (
     Apellido1 VARCHAR(50) NOT NULL,
     Apellido2 VARCHAR(50),
     Telefono VARCHAR(15),
-    IDPuesto INT,
+    Puesto INT,
     Estado BOOLEAN DEFAULT 1,
     FOREIGN KEY (IDPuesto) REFERENCES PUESTO(IDPuesto)
 );
