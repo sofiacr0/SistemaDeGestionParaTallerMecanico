@@ -26,8 +26,6 @@ def test():
     return render_template('test.html')
 
 # LOGIN
-
-
 @app.route('/login')
 def home():
     return render_template('login.html')
