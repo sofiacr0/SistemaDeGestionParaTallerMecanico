@@ -56,7 +56,7 @@ def inventario():
         finally:
             if connection:
                 connection.close()
-    return render_template('inventario.html')
+    return render_template('inventario.html', data=result)
 
 # SISTEMA DE GESTIÓN DE CITAS
 
