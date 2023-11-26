@@ -12,8 +12,8 @@
   <h1>Sistema de gestión de inventario</h1>
 
   <button onclick="abrirModalAñadirArticulo()">Añadir articulo</button>
-  <button onclick="abrirModalActualizarArticulo()">Añadir articulo</button>
-  <button onclick="abrirModalEliminarArticulo()">Añadir articulo</button>
+  <button onclick="abrirModalActualizarArticulo()">Actualizar articulo</button>
+  <button onclick="abrirModalEliminarArticulo()">Eliminar articulo</button>
 
   {% if data %}
   <table>
@@ -48,5 +48,6 @@
   {% else %}
   <p>No hay resultados disponibles.</p>
   {% endif %}
+  <script src="{{ url_for('static', filename='inventario.js') }}"></script>
 </body>
 </html>
