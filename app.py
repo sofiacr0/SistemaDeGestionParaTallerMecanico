@@ -25,19 +25,26 @@ def test():
 
 
 # LOGIN
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'])
 def login():
-    # Obtén los datos del formulario
-    username = request.form['username']
-    password = request.form['password']
+    #return render_template('login.html')
+    if request.method == 'POST':
+        try:
+            # Obtén los datos del formulario
+            username = request.form['username']
+            password = request.form['password']
 
-    # Realiza la validación (puedes cambiar esto según tus necesidades)
-    if username == 'usuario_valido' and password == 'contraseña_valida':
-        # Redirige a la página de paneldecontrol.html
-        return redirect(url_for('paneldecontrol'))
-    else:
-        # Maneja el caso de credenciales incorrectas (puedes personalizar este mensaje)
-        return "Credenciales incorrectas"
+            # Realiza la validación (puedes cambiar esto según tus necesidades)
+            if username == 'user' and password == 'user':
+                # Redirige a la página de paneldecontrol.html
+                return redirect(url_for('paneldecontrol'))
+            else:
+                # Maneja el caso de credenciales incorrectas (puedes personalizar este mensaje)
+                return "Credenciales incorrectas"
+        except KeyError:
+            # Maneja el caso en el que las claves no estén presentes en la solicitud
+            return "Datos de formulario incorrectos"  
+    return render_template('login.html')
 
 
 # PANEL DE CONTROL
