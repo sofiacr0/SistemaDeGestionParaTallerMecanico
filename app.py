@@ -392,7 +392,7 @@ def vehiculos():
 
     # ACTUALIZAR REGISTROS
     if request.method == 'PUT':
-        IDVehiculo = request.form['IDVehiculo'] 
+        IDVehiculo = request.form['IDVehiculo']
         Marca = request.form['Marca']
         Modelo = request.form['Modelo']
         Anio = request.form['Anio']
@@ -404,9 +404,10 @@ def vehiculos():
 
         try:
             with connection.cursor() as cursor:
-                sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s "
-                cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente, IDVehiculo))
-                
+                sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s"
+                cursor.execute(sql, (Marca, Modelo, Anio,
+                               Placa, Color, IDCliente, IDVehiculo))
+
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -426,7 +427,7 @@ def vehiculos():
 
         try:
             with connection.cursor() as cursor:
-                sql = "DELETE FROM VEHICULO WHERE IDVehiculo = %s"
+                sql = "DELETE FROM Vehiculo WHERE IDVehiculo = %s"
                 cursor.execute(sql, (IDVehiculo))
 
             connection.commit()
@@ -501,8 +502,9 @@ def servicios():
 
         try:
             with connection.cursor() as cursor:
-                sql = "UPDATE SERVICIO SET Nombre=%s, Descripcio=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s "
-                cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo, IDServicio))
+                sql = "UPDATE PIEZA SET Nombre=%s, Descripcion=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s"
+                cursor.execute(sql, (Nombre, Descripcion, Costo,
+                               Garantia, IDEmpleado, IDVehiculo, IDServicio))
 
             connection.commit()
             response = {'status': 'success',
