@@ -32,7 +32,7 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
     
-    <title>Automaster - Sistema de gestión de servicios</title>
+    <title>Automaster - Servicios</title>
   </head>
   <body>
     <h1>Sistema de gestión de servicios</h1>
@@ -100,13 +100,14 @@
     <!-- Cabecera de la tabla -->
     <thead>
       <tr>
-        <th>IDServicio</th>
+        <th>ID</th>
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Costo</th>
-        <th>Garantia</th>
-        <th>IDEmpleado</th>
-        <th>IDVehiculo</th>
+        <th>Garantía</th>
+        <th>Empleado</th>
+        <th>Vehiculo</th>
+        <th>Cliente</th>
       </tr>
     </thead>
 
@@ -121,6 +122,7 @@
         <td>{{ row[4] }}</td>
         <td>{{ row[5] }}</td>
         <td>{{ row[6] }}</td>
+        <td>{{ row[7] }}</td>
       </tr>
       {% endfor %}
     </tbody>

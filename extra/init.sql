@@ -41,7 +41,7 @@ CREATE TABLE EMPLEADO (
 CREATE TABLE VEHICULO (
     IDVehiculo INT AUTO_INCREMENT PRIMARY KEY,
     Marca VARCHAR(50),
-    Modelo INT,
+    Modelo VARCHAR(50),
     Anio INT,
     Placa VARCHAR(10),
     Color VARCHAR(50),
@@ -203,9 +203,7 @@ JOIN
 -- VISTA VEHICULOS
 CREATE VIEW vista_vehiculos AS
 SELECT
-   -- Nombre cliente
-   CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS n4,
-   -- ID Vehiculo
+ -- ID Vehiculo
    VEHICULO.IDVehiculo AS id_vehiculo,
    -- Marca Vehiculo
    VEHICULO.Marca,
@@ -217,6 +215,8 @@ SELECT
    VEHICULO.Placa,
    -- Color Vehiculo
    VEHICULO.Color,
+   -- Nombre cliente
+   CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS n4,
    -- Telefono Cliente (Si se lo quieren quitar, nomas lo puse por libertad creativa :))
    CLIENTE.Telefono AS numero_cliente
 FROM
@@ -283,16 +283,17 @@ VALUES
 
 -- RELLENO TABLA VEHICULO
 INSERT INTO `VEHICULO` (`IDVehiculo`, `Marca`, `Modelo`, `Anio`, `Placa`, `Color`, `IDCliente`) VALUES
-(1, 'Toyota', 2020, 1234, 'ABC123', 'Rojo', 1),
-(2, 'Ford', 2019, 5678, 'XYZ987', 'Azul', 2),
-(3, 'Honda', 2019, 1234, 'ABC-123', 'Azul', 3),
-(4, 'Ford', 2022, 8929, 'XYZ-789', 'Blanco', 4),
-(5, 'Chevrolet', 2019, 7823, 'GHI-789', 'Negro', 5),
-(6, 'Volkswagen', 2018, 1356, 'JKL-012', 'Blanco', 6),
-(7, 'Nissan', 2016, 6789, 'MNO-345', 'Gris', 7),
-(8, 'Mercedes-Benz', 2021, 3456, 'PQR-678', 'Negro', 8),
-(9, 'BMW', 2017, 3456, 'STU-901', 'Dorado', 9),
-(10, 'Hyundai', 2008, 6789, 'YZA-567', 'Rojo', 10);
+(1, 'Toyota', 'Corolla', 2023, 'AAA-123', 'Blanco', 1),
+(2, 'Honda', 'Civic', 2022, 'BBB-456', 'Negro', 2),
+(3, 'Nissan', 'Altima', 2021, 'CCC-789', 'Rojo', 3),
+(4, 'Volkswagen', 'Jetta', 2020, 'DDD-012', 'Azul', 4),
+(5, 'Chevrolet', 'Spark', 2019, 'EEE-345', 'Verde', 5),
+(6, 'Ford', 'F-150', 2018, 'FFF-678', 'Gris', 6),
+(7, 'Kia', 'Rio', 2017, 'GGG-901', 'Marron', 7),
+(8, 'Hyundai', 'Elantra', 2016, 'HHH-234', 'Dorado', 8),
+(9, 'Mazda', '3', 2015, 'III-567', 'Plateado', 9),
+(10, 'Subaru', 'Impreza', 2014, 'JJJ-890', 'Negro', 10);
+
 
 -- RELLENO TABLA SERVICIO
 INSERT INTO SERVICIO (IDServicio, Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES

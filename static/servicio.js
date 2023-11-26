@@ -12,7 +12,7 @@ function cerrarModalAñadirServicio() {
       var formData = $(this).serialize();
       $.ajax({
         type: "POST",
-        url: "/servicio",
+        url: "/servicios",
         data: formData,
         dataType: "json",
         success: function (response) {
