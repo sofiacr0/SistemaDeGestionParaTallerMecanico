@@ -125,6 +125,7 @@ table {
     width: 100%; /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     border-collapse: collapse;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Estilos para el encabezado de la tabla */

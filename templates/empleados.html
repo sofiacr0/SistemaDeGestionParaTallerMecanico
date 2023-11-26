@@ -5,8 +5,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -16,25 +21,11 @@
   <!-- jQuery UI CSS -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-  <!-- datetimepicker JS -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-
-  <!-- datetimepicker CSS -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
-
-
-  <!-- datetimepicker en español -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
-
   <title>Automaster - Empleados</title>
 </head>
 
 <body>
   <img src="/static/logo250px.png" alt="automaster-logo">
-
   <h1>Sistema de gestión de empleados</h1>
 
   <button onclick="abrirModalAñadirEmpleado()">Añadir empleado</button>
@@ -95,7 +86,6 @@
   </div>
 
   <!-- TABLA DE EMPLEADOS -->
-
   <div class="table-container">
     {% if data %}
     <table>
@@ -109,9 +99,7 @@
           <th>Estado</th>
         </tr>
       </thead>
-
       <!-- Filas de la tabla -->
-
       <tbody>
         {% for row in data %}
         <tr>
@@ -127,8 +115,9 @@
     {% else %}
     <p>No hay resultados disponibles.</p>
     {% endif %}
-
   </div>
+
+  <p> 2023 Taller Automaster. Todos los derechos reservados. </p>
 
   <!-- JavaScript  -->
   <script src="{{ url_for('static', filename='empleados.js') }}"></script>

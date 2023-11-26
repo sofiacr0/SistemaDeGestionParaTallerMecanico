@@ -21,25 +21,11 @@
   <!-- jQuery UI CSS -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-  <!-- datetimepicker JS -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-
-  <!-- datetimepicker CSS -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
-
-
-  <!-- datetimepicker en español -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
-
   <title>Automaster - Vehículos</title>
 </head>
 
 <body>
   <img src="/static/logo250px.png" alt="automaster-logo">
-
   <h1>Sistema de gestión de vehículos</h1>
 
   <button onclick="abrirModalAñadirVehiculo()">Añadir vehículo</button>
@@ -115,9 +101,7 @@
           <th>Cliente</th>
         </tr>
       </thead>
-
       <!-- Filas de la tabla -->
-
       <tbody>
         {% for row in data %}
         <tr>
@@ -137,6 +121,8 @@
     {% endif %}
   </div>
 
+  <p> 2023 Taller Automaster. Todos los derechos reservados. </p>
+  
   <!-- JavaScript  -->
   <script src="{{ url_for('static', filename='vehiculo.js') }}"></script>
 </body>

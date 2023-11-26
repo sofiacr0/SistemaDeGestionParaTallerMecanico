@@ -29,7 +29,6 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
 
-
   <!-- datetimepicker en español -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
@@ -39,7 +38,6 @@
 
 <body>
   <img src="/static/logo250px.png" alt="automaster-logo">
-
   <h1>Sistema de gestión de inventario</h1>
 
   <button onclick="abrirModalAñadirArticulo()">Añadir articulo</button>
@@ -135,9 +133,9 @@
     {% else %}
     <p>No hay resultados disponibles.</p>
     {% endif %}
-
   </div>
 
+  <p> 2023 Taller Automaster. Todos los derechos reservados. </p>
 
   <!-- JavaScript  -->
   <script src="{{ url_for('static', filename='inventario.js') }}"></script>
