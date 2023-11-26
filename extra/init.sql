@@ -228,6 +228,99 @@ JOIN
 JOIN
     CLIENTE ON VEHICULO.IDVehiculo= CLIENTE.IDCliente;
 
+-- VISTA VEHICULO
+
+
+DROP TABLE IF EXISTS vista_vehiculo;
+
+
+CREATE VIEW vista_vehiculo AS
+SELECT
+
+
+   -- Nombre cliente
+   CONCAT(CLIENTE.Nombre, ' ', CLIENTE.Apellido1, ' ', CLIENTE.Apellido2) AS nombre_cliente,
+
+
+   -- ID Vehiculo
+   VEHICULO.IDVehiculo AS id_vehiculo,
+
+
+   -- Marca Vehiculo
+   VEHICULO.Marca,
+
+
+   -- Modelo Vehiculo
+   VEHICULO.Modelo,
+
+
+   -- Año Vehiculo
+   VEHICULO.Anio,
+
+
+   -- Placa Vehiculo
+   VEHICULO.Placa,
+
+
+   -- Color Vehiculo
+   VEHICULO.Color,
+
+
+   -- Telefono Cliente (Si se lo quieren quitar, nomas lo puse por libertad creativa :))
+   CLIENTE.Telefono AS numero_cliente
+
+
+FROM
+   VEHICULO
+JOIN
+   CLIENTE ON VEHICULO.Cliente = CLIENTE.IDCliente;
+
+-- VISTA PIEZA
+
+DROP TABLE IF EXISTS vista_piezas;
+
+
+CREATE VIEW vista_piezas AS
+SELECT
+
+
+   -- ID
+   PIEZA.IDPieza,
+
+
+   -- Nombre
+   PIEZA.Nombre,
+
+
+   -- Cantidad
+   PIEZA.CantidadEnStock,
+
+
+   -- Fecha de adquisicion
+   CONCAT(
+   DATE_FORMAT(PIEZA.FechaAdquisicion, '%d de '),
+   (SELECT MesEspanol FROM MesesEquivalencia WHERE MesIngles = MONTHNAME(PIEZA.FechaAdquisicion)),
+   DATE_FORMAT(PIEZA.FechaAdquisicion, ' de %Y')
+   ) AS FechaAdquisicion,
+
+
+   -- Precio de compra
+   PIEZA.PrecioCompra,
+
+
+   -- Precio de venta
+   PIEZA.PrecioVenta,
+
+
+   -- Nombre proveedor
+   PROVEEDOR.Nombre AS nombre_proveedor,
+
+
+   -- Telefono proveedor
+   PROVEEDOR.Telefono AS telefono_proveedor
+
+FROM PIEZA
+JOIN PROVEEDOR ON PROVEEDOR.IDProveedor = PIEZA.Proveedor;
 
 -- RELLENO TABLA PROVEEDOR 
 INSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
