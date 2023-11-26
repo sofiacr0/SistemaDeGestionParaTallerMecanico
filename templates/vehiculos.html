@@ -53,7 +53,7 @@
         Anio: <input type="text" name="Anio" /><br />
         Placa: <input type="text" name="Placa" /><br />
         Color: <input type="text" name="Color" /><br />
-        IDCliente: <input type="text" name="IDCliente" /><br />
+        ID del Cliente: <input type="text" name="IDCliente" /><br />
         <input type="submit" value="Enviar" />
       </form>
     </div>
@@ -65,7 +65,7 @@
       <!-- Encabezado del formulario -->
       <h2>Eliminar Vehiculo</h2>
       <!-- Formulario -->
-      <form action="/vehiculos" method="post" id="eliminarVehiculo">
+      <form action="/vehiculos" method="DELETE" id="eliminarVehiculo">
         <!-- Campos del formulario -->
         ID del vehiculo: <input type="text" name="IDVehiculo" /><br />
         <input type="submit" value="Enviar" />
@@ -108,7 +108,7 @@
   {% else %}
   <p>No hay resultados disponibles.</p>
   {% endif %}
-  
+
    <!-- JavaScript  -->
    <script src="{{ url_for('static', filename='vehiculo.js') }}"></script>
 </body>
