@@ -1,147 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Estilos CSS -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 
-    <!-- JavaScript  -->
-    <script src="{{ url_for('static', filename='citas.js') }}"></script>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- JavaScript  -->
+  <script src="{{ url_for('static', filename='citas.js') }}"></script>
 
-    <!-- jQuery UI CSS -->
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <!-- jQuery UI JS -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-    <!-- datetimepicker CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
-    />
+  <!-- jQuery UI JS -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- datetimepicker JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  <!-- datetimepicker CSS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
 
-    <!-- datetimepicker en español -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
+  <!-- datetimepicker JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 
-    <title>Automaster - Sistema de gestión de citas</title>
-  </head>
+  <!-- datetimepicker en español -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/build/jquery.datetimepicker.full.es.js"></script>
 
-  <body>
-    <h1>Sistema de gestión de citas</h1>
+  <title>Automaster - Sistema de gestión de citas</title>
+</head>
 
-    <!-- Botones -->
-    <button onclick="abrirModalAñadirCita()">Añadir cita</button>
-    <button onclick="abrirModalActualizarCita()">Actualizar cita</button>
-    <button onclick="abrirModalEliminarCita()">Eliminar cita</button>
+<body>
+  <h1>Sistema de gestión de citas</h1>
 
-    <!-- AÑADIR CITA -->
-    <div id="modalAñadirCita" class="modal">
-      <div class="modal-contenido">
-        <span class="cerrar" onclick="cerrarModalAñadirCita()">&times;</span>
-        <!-- Encabezado del formulario -->
-        <h2>Añadir cita</h2>
-        <!-- Formulario -->
-        <form action="/citas" method="post" id="añadirCita">
-          <!-- Campos del formulario -->
-          ID del cliente: <input type="text" name="IDCliente" /><br />
-          Entrada:
-          <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
-          Salida:
-          <input type="text" name="FechaSalida" class="datetimepicker" /><br />
-          ID del servicio: <input type="text" name="IDServicio" /><br />
-          ID del empleado: <input type="text" name="IDEmpleado" /><br />
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
+  <!-- Botones -->
+  <button onclick="abrirModalAñadirCita()">Añadir cita</button>
+  <button onclick="abrirModalActualizarCita()">Actualizar cita</button>
+  <button onclick="abrirModalEliminarCita()">Eliminar cita</button>
+
+  <!-- AÑADIR CITA -->
+  <div id="modalAñadirCita" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalAñadirCita()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Añadir cita</h2>
+      <!-- Formulario -->
+      <form action="/citas" method="post" id="añadirCita">
+        <!-- Campos del formulario -->
+        ID del cliente: <input type="text" name="IDCliente" /><br />
+        Entrada:
+        <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
+        Salida:
+        <input type="text" name="FechaSalida" class="datetimepicker" /><br />
+        ID del servicio: <input type="text" name="IDServicio" /><br />
+        ID del empleado: <input type="text" name="IDEmpleado" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
     </div>
+  </div>
 
-    <!-- ACTUALIZAR CITA -->
-    <div id="modalActualizarCita" class="modal">
-      <div class="modal-contenido">
-        <span class="cerrar" onclick="cerrarModalActualizarCita()"
-          >&times;</span
-        >
-        <!-- Encabezado del formulario -->
-        <h2>Actualizar cita</h2>
-        <!-- Formulario -->
-        <form action="/citas" method="PUT" id="actualizarCita">
-          <!-- Campos del formulario -->
-          ID de la cita: <input type="text" name="IDCita" /><br />
-          ID del cliente: <input type="text" name="IDCliente" /><br />
-          Entrada:
-          <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
-          Salida:
-          <input type="text" name="FechaSalida" class="datetimepicker" /><br />
-          ID del servicio: <input type="text" name="IDServicio" /><br />
-          ID del empleado: <input type="text" name="IDEmpleado" /><br />
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
+  <!-- ACTUALIZAR CITA -->
+  <div id="modalActualizarCita" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalActualizarCita()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Actualizar cita</h2>
+      <!-- Formulario -->
+      <form action="/citas" method="PUT" id="actualizarCita">
+        <!-- Campos del formulario -->
+        ID de la cita: <input type="text" name="IDCita" /><br />
+        ID del cliente: <input type="text" name="IDCliente" /><br />
+        Entrada:
+        <input type="text" name="FechaEntrada" class="datetimepicker" /><br />
+        Salida:
+        <input type="text" name="FechaSalida" class="datetimepicker" /><br />
+        ID del servicio: <input type="text" name="IDServicio" /><br />
+        ID del empleado: <input type="text" name="IDEmpleado" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
     </div>
+  </div>
 
-    <!-- ELIMINAR CITA -->
-    <div id="modalEliminarCita" class="modal">
-      <div class="modal-contenido">
-        <span class="cerrar" onclick="cerrarModalEliminarCita()">&times;</span>
-        <!-- Encabezado del formulario -->
-        <h2>Eliminar cita</h2>
-        <!-- Formulario -->
-        <form action="/citas" method="DELETE" id="eliminarCita">
-          <!-- Campos del formulario -->
-          ID de la cita: <input type="text" name="IDCita" /><br />
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
+  <!-- ELIMINAR CITA -->
+  <div id="modalEliminarCita" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModalEliminarCita()">&times;</span>
+      <!-- Encabezado del formulario -->
+      <h2>Eliminar cita</h2>
+      <!-- Formulario -->
+      <form action="/citas" method="DELETE" id="eliminarCita">
+        <!-- Campos del formulario -->
+        ID de la cita: <input type="text" name="IDCita" /><br />
+        <input type="submit" value="Enviar" />
+      </form>
     </div>
+  </div>
 
-    <!-- TABLA DE CITAS -->
-    {% if data %}
-    <table>
-      <!-- Cabecera de la tabla -->
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Cliente</th>
-          <th>Entrada</th>
-          <th>Salida</th>
-          <th>Servicio</th>
-          <th>Empleado</th>
-        </tr>
-      </thead>
-      <!-- Filas de la tabla -->
-      <tbody>
-        {% for row in data %}
-        <tr>
-          <td>{{ row[0] }}</td>
-          <td>{{ row[1] }}</td>
-          <td>{{ row[2] }}</td>
-          <td>{{ row[3] }}</td>
-          <td>{{ row[4] }}</td>
-          <td>{{ row[5] }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% else %}
-    <p>No hay resultados disponibles.</p>
-    {% endif %}
-  </body>
+  <!-- TABLA DE CITAS -->
+  {% if data %}
+  <table>
+    <!-- Cabecera de la tabla -->
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>Servicio</th>
+        <th>Empleado</th>
+      </tr>
+    </thead>
+    <!-- Filas de la tabla -->
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No hay resultados disponibles.</p>
+  {% endif %}
+</body>
+
 </html>
