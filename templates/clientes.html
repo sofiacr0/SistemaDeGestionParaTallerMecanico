@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    
+    <title>Clientes</title>
+</head>
+
+<body>
+    <h1>Sistema de gestión de clientes</h1>
+    <!-- Botones -->
+    <button onclick="abrirModalAñadir()">Añadir </button>
+    <button onclick="abrirModalActualizar()">Actualizar </button>
+    <button onclick="abrirModalEliminar()">Eliminar </button>
+
+    <!-- AÑADIR REGISTRO -->
+    <div id="modalAñadir" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModalAñadir()">&times;</span>
+            <!-- Encabezado del formulario -->
+            <h2>Añadir </h2>
+            <!-- Formulario -->
+            <form action="/clientes" method="post" id="añadir">
+                <!-- Campos del formulario -->
+                Nombre: <input type="text" name="Nombre" /><br />
+                Primer apellido: <input type="text" name="Apellido1" /><br />
+                Segundo apellido: <input type="text" name="Apellido2" /><br />
+                Telefono: <input type="text" name="Telefono" /><br />
+                Email: <input type="text" name="Email" /><br />
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+    </div>
+
+    <!-- ACTUALIZAR REGISTRO -->
+    <div id="modalActualizar" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModalActualizar()">&times;</span>
+            <!-- Encabezado del formulario -->
+            <h2>Actualizar </h2>
+            <!-- Formulario -->
+            <form action="/clientes" method="PUT" id="actualizar">
+                <!-- Campos del formulario -->
+                ID del cliente: <input type="text" name="IDCliente" /><br />
+                Nombre: <input type="text" name="Nombre" /><br />
+                Primer apellido: <input type="text" name="Apellido1" /><br />
+                Segundo apellido: <input type="text" name="Apellido2" /><br />
+                Telefono: <input type="text" name="Telefono" /><br />
+                Email: <input type="text" name="Email" /><br />
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+    </div>
+
+    <!-- ELIMINAR REGISTRO -->
+    <div id="modalEliminar" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModalEliminar()">&times;</span>
+            <!-- Encabezado del formulario -->
+            <h2>Eliminar </h2>
+            <!-- Formulario -->
+            <form action="/clientes" method="post" id="eliminar">
+                <!-- Campos del formulario -->
+                ID del cliente: <input type="text" name="IDCliente" /><br />
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+    </div>
+
+
+    <!-- TABLA -->
+    {% if data %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No hay resultados disponibles.</p>
+    {% endif %}
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='clientes.js') }}"></script>
+
+</body>
+
+</html>

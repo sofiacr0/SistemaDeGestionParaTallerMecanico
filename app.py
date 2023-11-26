@@ -97,7 +97,8 @@ def inventario():
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE PIEZA SET Nombre=%s, CantidadEnStock=%s, FechaAdquisicion=%s, PrecioCompra=%s, PrecioVenta=%s, IDProveedor=%s WHERE IDPieza=%s"
-                cursor.execute(sql, (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor, IDPieza))
+                cursor.execute(sql, (Nombre, CantidadEnStock, FechaAdquisicion,
+                               PrecioCompra, PrecioVenta, IDProveedor, IDPieza))
 
             connection.commit()
             response = {'status': 'success',
@@ -235,7 +236,6 @@ def empleados():
     # OBTIENE REGISTROS
     if request.method == 'GET':
         connection = None
-
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
@@ -255,19 +255,93 @@ def empleados():
 def clientes():
     # OBTIENE REGISTROS
     if request.method == 'GET':
-        pass
+        connection = None
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM vista_clientes')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
+            return render_template('clientes.html', data=result)
 
-    # AÑADE REGISTROS
+    # AÑADIR REGISTROS
     if request.method == 'POST':
-        pass
+        Nombre = request.form['Nombre']
+        Apellido1 = request.form['Apellido1']
+        Apellido2 = request.form['Apellido2']
+        Telefono = request.form['Telefono']
+        Email = request.form['Email']
 
-    # ACTUALIZA REGISTROS
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO CLIENTE (Nombre, Apellido1, Apellido2, Telefono, Email) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(sql, (Nombre, Apellido1, Apellido2, Telefono, Email))
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ACTUALIZAR REGISTROS
     if request.method == 'PUT':
-        pass
+        IDCliente = request.form['IDCliente']
+        Nombre = request.form['Nombre']
+        Apellido1 = request.form['Apellido1']
+        Apellido2 = request.form['Apellido2']
+        Telefono = request.form['Telefono']
+        Email = request.form['Email']
 
-    # ELIMINA REGISTROS
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "UPDATE CLIENTE SET Nombre=%s, Apellido1=%s, Apellido2=%s, Telefono=%s, Email=%s WHERE IDCliente=%s "
+                cursor.execute(sql, (Nombre, Apellido1, Apellido2, Telefono, Email, IDCliente))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro actualizado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al actualizar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ELIMINAR REGISTROS
     if request.method == 'DELETE':
-        pass
+        IDCliente = request.form['IDCliente']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM CLIENTE WHERE IDCliente = %s"
+                cursor.execute(sql, (IDCliente))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 # SISTEMA DE GESTIÓN DE VEHICULOS
