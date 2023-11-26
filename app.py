@@ -377,7 +377,7 @@ def vehiculos():
 
         try:
             with connection.cursor() as cursor:
-                sql = "INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, IDCliente) VALUES (%s, %s, %s, %s, %s)"
+                sql = "INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, IDCliente) VALUES (%s, %s, %s, %s, %s, %s)"
                 cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente))
             connection.commit()
             response = {'status': 'success',
@@ -474,7 +474,7 @@ def servicios():
 
         try:
             with connection.cursor() as cursor:
-                sql = "INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES (%s, %s, %s, %s, %s)"
+                sql = "INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES (%s, %s, %s, %s, %s, %s)"
                 cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo))
             connection.commit()
             response = {'status': 'success',
