@@ -17,6 +17,13 @@ header {
     text-align: center;
 }
 
+head {
+    background-color: #167D7F;
+    color: #fff;
+    padding: 0.5rem;
+    text-align: center;
+}
+
 nav ul {
     list-style: none;
 }
