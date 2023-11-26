@@ -170,7 +170,6 @@ button {
     border-radius: 5px;
     padding: 10px 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-image: linear-gradient(to bottom, #ccc, #969696);
   }
   
   .button:hover {
