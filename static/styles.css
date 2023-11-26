@@ -161,4 +161,27 @@ img {
     width: 16%;
   }
 
+/* Estilos para los botones */
+  button {
+    background-color: #434760;
+    color: #fff;
+    font-size: 16px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom, #434760, #64a4a8);
+  }
+  
+  .button:hover {
+    background-color: #fff;
+    color: #434760;
+  }
+  
+  .button:active {
+    background-color: #64a4a8;
+    color: #fff;
+  }
+  
+
 
