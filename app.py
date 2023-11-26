@@ -137,21 +137,97 @@ def inventario():
 # SISTEMA DE GESTIÓN DE CITAS
 @app.route('/citas', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def citas():
-    # OBTIENE REGISTROS
+    # OBTENER REGISTROS
     if request.method == 'GET':
-        pass
+        connection = None
+        try:
+            connection = get_db_connection()
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT * FROM vista_citas')
+                result = cursor.fetchall()
+        except Exception as e:
+            print(f"Error en la base de datos: {e}")
+            result = None
+        finally:
+            if connection:
+                connection.close()
+            return render_template('citas.html', data=result)
 
-    # AÑADE REGISTROS
+    # AÑADIR REGISTROS
     if request.method == 'POST':
-        pass
+        IDCliente = request.form['IDCliente']
+        FechaEntrada = request.form['FechaEntrada']
+        FechaSalida = request.form['FechaSalida']
+        IDServicio = request.form['IDServicio']
+        IDEmpleado = request.form['IDEmpleado']
 
-    # ACTUALIZA REGISTROS
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO CITA (IDCliente, FechaEntrada, FechaSalida, IDServicio, IDEmpleado) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(sql, (IDCliente, FechaEntrada,
+                               FechaSalida, IDServicio, IDEmpleado))
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro insertado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al insertar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ACTUALIZAR REGISTROS
     if request.method == 'PUT':
-        pass
+        IDCita = request.form['IDCita']
+        IDCliente = request.form['IDCliente']
+        FechaEntrada = request.form['FechaEntrada']
+        FechaSalida = request.form['FechaSalida']
+        IDServicio = request.form['IDServicio']
+        IDEmpleado = request.form['IDEmpleado']
 
-    # ELIMINA REGISTROS
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "UPDATE CITA SET IDCliente=%s, FechaEntrada=%s, FechaSalida=%s, IDServicio=%s, IDEmpleado=%s WHERE IDCita=%s "
+                cursor.execute(sql, (IDCliente, FechaEntrada,
+                               FechaSalida, IDServicio, IDEmpleado, IDCita))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro actualizado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al actualizar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
+
+    # ELIMINAR REGISTROS
     if request.method == 'DELETE':
-        pass
+        IDCita = request.form['IDCita']
+
+        connection = pymysql.connect(**db_config)
+
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM CITA WHERE IDCita = %s"
+                cursor.execute(sql, (IDCita))
+
+            connection.commit()
+            response = {'status': 'success',
+                        'message': 'Registro eliminado correctamente'}
+        except Exception as e:
+            connection.rollback()
+            response = {'status': 'error',
+                        'message': f'Error al eliminar el registro: {str(e)}'}
+        finally:
+            connection.close()
+        return jsonify(response)
 
 
 # SISTEMA DE GESTIÓN DE EMPLEADOS
