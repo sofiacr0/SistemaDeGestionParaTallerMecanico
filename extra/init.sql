@@ -251,10 +251,18 @@ FROM PIEZA
 JOIN PROVEEDOR ON PROVEEDOR.IDProveedor = PIEZA.IDProveedor;
 
 -- RELLENO TABLA PROVEEDOR 
-INSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
+IINSERT INTO PROVEEDOR (IDProveedor, Nombre, Descripcion, Telefono, Email) VALUES
 (1, 'AutoRepuestos Velazquez', 'Proveedor de repuestos automotrices de alta calidad.', '123-456-7890', 'info@autorepuestosvelazquez.com'),
-(2, 'Herramientas Martinez', 'Especialistas en suministro de herramientas para talleres mecanicos.', '987-654-3210', 'ventas@herramientasmartinez.com'),
-(3, 'Neumaticos RapidoGiro', 'Especialistas en neumaticos y servicios de alineacion.', '555-7890-1234', 'info@rapido-giro-neumaticos.com');
+(2, 'Herramientas Martinez', 'Especialistas en suministro de herramientas para talleres mecánicos.', '987-654-3210', 'ventas@herramientasmartinez.com'),
+(3, 'Neumáticos RapidoGiro', 'Especialistas en neumáticos y servicios de alineación.', '555-7890-1234', 'info@rapido-giro-neumaticos.com'),
+(4, 'Sistemas de Diagnóstico Automotriz', 'Proveedor de equipos de diagnóstico y escáneres para talleres.', '111-222-3333', 'ventas@diagnosticoautomotriz.com'),
+(5, 'Lubricantes y Aceites Especiales', 'Suministro de lubricantes y aceites de alta calidad para motores.', '444-555-6666', 'info@aceitesespeciales.com'),
+(6, 'Baterías PowerCharge', 'Especialistas en baterías para vehículos de todo tipo.', '777-888-9999', 'ventas@powerchargebaterias.com'),
+(7, 'Frenos y Partes de Suspensión', 'Proveedor de piezas de frenos y componentes de suspensión.', '321-654-9876', 'info@frenossuspension.com'),
+(8, 'Iluminación Automotriz LuzTotal', 'Suministro de sistemas de iluminación para vehículos.', '999-888-7777', 'ventas@luztotaliluminacion.com'),
+(9, 'Radiadores y Sistemas de Enfriamiento', 'Proveedor de radiadores y sistemas de enfriamiento para motores.', '333-666-9999', 'info@enfriamientosistemas.com'),
+(10, 'Hules y Juntas Especializadas', 'Especialistas en hules y juntas para sellos y aislamientos.', '555-111-7777', 'ventas@hulesjuntas.com');
+
 
 -- RELLENO TABLA CLIENTE 
 INSERT INTO `CLIENTE` (`IDCliente`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`) VALUES
@@ -271,15 +279,31 @@ INSERT INTO `CLIENTE` (`IDCliente`, `Nombre`, `Apellido1`, `Apellido2`, `Telefon
 
 -- RELLENO TABLA PUESTO 
 INSERT INTO PUESTO (IDPuesto, Nombre, Descripcion) VALUES
-(1, 'Mecanico', 'Descripcion'),
-(2, 'Recepcionista', 'Descripcion\r\n');
+(1, 'Mecánico', 'Encargado de realizar diagnósticos, reparaciones y mantenimiento de vehículos. Experiencia en el uso de herramientas y equipos especializados en mecánica automotriz.'),
+(2, 'Recepcionista', 'Responsable de gestionar el front desk del taller, atender llamadas, programar citas y coordinar la comunicación entre clientes y mecánicos.'),
+(3, 'Especialista en Electrónica Automotriz', 'Experto en diagnóstico y reparación de sistemas electrónicos y computarizados en vehículos modernos.'),
+(4, 'Técnico en Alineación y Balanceo', 'Encargado de realizar alineaciones, balanceo de ruedas y ajustes necesarios para garantizar un manejo seguro y eficiente.'),
+(5, 'Especialista en Frenos y Suspensión', 'Experto en el mantenimiento y reparación de sistemas de frenado y suspensión para garantizar la seguridad y el rendimiento del vehículo.'),
+(6, 'Mecánico de Motores', 'Encargado de desmontar, reparar y ensamblar motores de vehículos, identificando y solucionando problemas mecánicos.'),
+(7, 'Técnico en Sistemas de Escape', 'Especializado en la instalación y reparación de sistemas de escape, catalizadores y tuberías para garantizar la eficiencia y cumplimiento ambiental.'),
+(8, 'Asesor de Servicio al Cliente', 'Responsable de recibir a los clientes, entender sus necesidades, proporcionar presupuestos y asesorar sobre los servicios necesarios para sus vehículos.'),
+(9, 'Especialista en Diagnóstico de Transmisiones', 'Experto en el diagnóstico y reparación de problemas en sistemas de transmisión automática y manual.'),
+(10, 'Auxiliar de Almacén de Repuestos', 'Encargado de gestionar y mantener organizado el inventario de repuestos, realizar pedidos y asegurar la disponibilidad de piezas necesarias para las reparaciones.');
+
 
 -- RELLENO TABLA EMPLEADO
 INSERT INTO EMPLEADO (IDEmpleado, Nombre, Apellido1, Apellido2, Telefono, IDPuesto, Estado) 
 VALUES
 (1, 'Jose', 'Lopez', 'Ramirez', '555-111-2222', 1, 1),
 (2, 'Ana', 'Gonzales', 'Herrera', '555-333-4444', 2, 1),
-(3, 'Maria', 'Martinez', 'Garcia', '555112233', 1, 1);
+(3, 'Maria', 'Martinez', 'Garcia', '555112233', 1, 1)
+(4, 'Carlos', 'Perez', 'Fernandez', '555-555-5555', 3, 1),
+(5, 'Luis', 'Ramirez', 'Diaz', '555-666-7777', 4, 1),
+(6, 'Laura', 'Gomez', 'Santos', '555-888-9999', 5, 1),
+(7, 'Pedro', 'Torres', 'Jimenez', '555-999-0000', 6, 1),
+(8, 'Isabel', 'Castro', 'Rojas', '555-111-0000', 7, 1),
+(9, 'Javier', 'Serrano', 'Moreno', '555-222-3333', 8, 1),
+(10, 'Sara', 'Fernandez', 'Navarro', '555-444-5555', 9, 1);
 
 -- RELLENO TABLA VEHICULO
 INSERT INTO `VEHICULO` (`IDVehiculo`, `Marca`, `Modelo`, `Anio`, `Placa`, `Color`, `IDCliente`) VALUES
@@ -299,17 +323,39 @@ INSERT INTO `VEHICULO` (`IDVehiculo`, `Marca`, `Modelo`, `Anio`, `Placa`, `Color
 INSERT INTO SERVICIO (IDServicio, Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES
 (1, 'Cambio de aceite', 'Cambio de aceite rapido y eficiente para el vehiculo.', 50.00, 'Garantia de 3 meses', 1, 1),
 (2, 'Reparacion de frenos', 'Seguridad en frenos: inspeccion, reparacion y mantenimiento.', 120.00, 'Garantia de 6 meses', 1, 2),
-(3, 'Reemplazo de neumaticos', 'Reemplazo de neumaticos: Instalacion experta para un rendimiento optimo y seguridad en la carretera.', 500.00, 'Garantia 8 meses', 3, 3);
+(3, 'Reemplazo de neumaticos', 'Reemplazo de neumaticos: Instalacion experta para un rendimiento optimo y seguridad en la carretera.', 500.00, 'Garantia 8 meses', 3, 3),
+(4, 'Alineacion y balanceo', 'Servicio profesional de alineación y balanceo para un manejo suave y seguro.', 80.00, 'Garantia de 4 meses', 2, 4),
+(5, 'Diagnóstico electrónico', 'Diagnóstico avanzado para identificar y solucionar problemas electrónicos en el vehículo.', 150.00, 'Garantia de 3 meses', 3, 5),
+(6, 'Cambio de batería', 'Reemplazo y instalación de baterías de alta calidad para un arranque confiable.', 100.00, 'Garantia de 12 meses', 4, 6),
+(7, 'Reparación de transmisión', 'Servicio especializado para reparar problemas en la transmisión automática o manual.', 300.00, 'Garantia de 9 meses', 5, 7),
+(8, 'Servicio de frenos ABS', 'Reparación y mantenimiento de sistemas de frenos antibloqueo (ABS) para mayor seguridad.', 180.00, 'Garantia de 6 meses', 6, 8),
+(9, 'Cambio de bujías y cables', 'Sustitución de bujías y cables para un rendimiento óptimo del motor.', 60.00, 'Garantia de 3 meses', 7, 9),
+(10, 'Servicio de aire acondicionado', 'Mantenimiento y reparación del sistema de aire acondicionado para un viaje cómodo.', 120.00, 'Garantia de 5 meses', 8, 10);
 
 -- RELLENO TABLA PIEZA
 INSERT INTO PIEZA (IDPieza, Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor) 
 VALUES
 (1, 'Filtro de aceite', 100, '2023-01-15', 5.00, 10.00, 1),
 (2, 'Pastillas de freno', 50, '2023-02-20', 10.00, 20.00, 2),
-(3, 'Bateria para carro', 5, '2023-08-25', 2500.00, 3000.00, 1);
+(3, 'Bateria para carro', 5, '2023-08-25', 2500.00, 3000.00, 1),
+(4, 'Liquido de frenos', 30, '2023-03-10', 8.00, 15.00, 3),
+(5, 'Neumático radial', 20, '2023-05-05', 60.00, 100.00, 4),
+(6, 'Bujías de encendido', 50, '2023-06-18', 2.50, 5.00, 5),
+(7, 'Aceite de transmisión', 40, '2023-07-22', 12.00, 25.00, 6),
+(8, 'Filtro de aire', 80, '2023-09-05', 3.00, 7.00, 7),
+(9, 'Cables de bujías', 25, '2023-10-15', 4.50, 9.00, 8),
+(10, 'Líquido refrigerante', 35, '2023-11-30', 6.00, 12.00, 9);
 
 -- RELLENO TABLA CITA
 INSERT INTO CITA (IDCita, IDCliente, FechaEntrada, FechaSalida, IDServicio, IDEmpleado) 
 VALUES
 (1, 1, '2023-10-15 10:00:00', '2023-10-15 14:00:00', 1, 1),
-(2, 2, '2023-10-16 11:00:00', '2023-10-16 15:00:00', 2, 2);
+(2, 2, '2023-10-16 11:00:00', '2023-10-16 15:00:00', 2, 2),
+(3, 3, '2023-10-18 09:30:00', '2023-10-18 13:30:00', 3, 3),
+(4, 4, '2023-10-20 14:00:00', '2023-10-20 18:00:00', 4, 4),
+(5, 5, '2023-10-22 08:45:00', '2023-10-22 12:45:00', 5, 5),
+(6, 6, '2023-10-25 12:30:00', '2023-10-25 16:30:00', 6, 6),
+(7, 7, '2023-10-27 10:15:00', '2023-10-27 14:15:00', 7, 7),
+(8, 8, '2023-10-29 15:00:00', '2023-10-29 19:00:00', 8, 8),
+(9, 9, '2023-11-01 13:45:00', '2023-11-01 17:45:00', 9, 9),
+(10, 10, '2023-11-03 11:30:00', '2023-11-03 15:30:00', 10, 10);
