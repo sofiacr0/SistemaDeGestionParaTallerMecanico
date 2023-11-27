@@ -105,7 +105,9 @@ nav a {
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
+    border-radius: 10px;
 }
+
 
 .cerrar {
     color: #aaa;
@@ -126,13 +128,11 @@ nav a {
 /* Estilos generales para la tabla */
 .table-container {
     width: 80%;
-    /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     margin: auto;
 }
 
 table {
     width: 100%;
-    /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 32px;
@@ -142,7 +142,6 @@ table {
 thead {
     background-color: #f0f0f0;
     text-align: center;
-    /* Alinea el texto en el encabezado al centro */
 }
 
 th,
