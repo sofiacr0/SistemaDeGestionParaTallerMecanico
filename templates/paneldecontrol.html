@@ -7,8 +7,14 @@
         <title>Software</title>
     </head>
     <body id="body">
+        <button style="float: left;" onclick="toggleSidebar()">Menú</button>
+        <div class="sidebar">
+            <!-- Contenido del sidebar -->
+            <a href="/">Login</a>
+            <a href="/inventario">Inventario</a>    
+        </div>
+        <script src="{{ url_for('static', filename='paneldecontrol.js') }}"></script>
         <header>
-            <h1>Taller Automaster</h1>
             <!--
             <nav>
                 <ul>
@@ -34,7 +40,7 @@
         <section class="feature">
             <div class="margin">
                 <ul>
-                    <li>Regresar a <a href="http://127.0.0.1:5000/login">login</a></li>
+                    <li>Regresar a <a href="/">login</a></li>
                     <li>Visualizar e ingresar registro de <a href="/inventario">inventario</a></li>
                     <li>Visuaizar e ingresar registro de <a href="/citas">cita</a></li>
                     <li>Checar <a href="/empleados">empleados</a></li>
