@@ -37,12 +37,12 @@ footer {
 
 footerlogin {
     position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
     background-color: #3D3D3E;
     color: #fff;
     text-align: center;
-    padding: 1rem;
 }
 
 nav ul {
@@ -196,6 +196,34 @@ button {
 .button:active {
     background-color: #1a1940;
 }
+
+/* MÁS estilos para los botones */
+buttonpc {
+    padding: 1.75px 20px;
+    background-color: #3D3D3E;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+buttonpcOPEN {
+    padding: 8px 85px;
+    background-color: #3D3D3E;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.buttonpc:hover {
+    background-color: #3D3D3E;
+}
+
+.buttonpc:active {
+    background-color: #3D3D3E;
+}
+
 
 /* input */
 
