@@ -29,13 +29,10 @@ header {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     background-color: #3D3D3E;
     color: #fff;
-    text-align: center;
     padding: 1rem;
+    text-align: center;
 }
 
 nav ul {
@@ -138,7 +135,7 @@ table {
     /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     border-collapse: collapse;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 /* Estilos para el encabezado de la tabla */
