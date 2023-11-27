@@ -1,3 +1,9 @@
+/*
+#2B2A4C azul
+#903749 vino
+#EEEBDD beige
+*/
+
 /* Reset de estilos para una apariencia consistente en diferentes navegadores */
 body, h1, h2, h3, p, ul {
     margin: 0;
@@ -163,14 +169,14 @@ img {
 
 /* Estilos para los botones */
   button {
-    background-color: #434760;
+    background-color: #2B2A4C;
     color: #fff;
     font-size: 16px;
     border: 1px solid #fff;
     border-radius: 5px;
     padding: 10px 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-image: linear-gradient(to bottom, #434760, #64a4a8);
+    background-image: linear-gradient(to bottom, #2B2A4C, #903749);
   }
   
   .button:hover {
