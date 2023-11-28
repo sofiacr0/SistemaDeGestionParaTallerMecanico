@@ -19,24 +19,27 @@ def get_db_connection():
 
 
 # LOGIN
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         try:
-            # Obtén los datos del formulario
+            # Obtiene los datos del formulario
             username = request.form['username']
             password = request.form['password']
 
-            # Realiza la validación (puedes cambiar esto según tus necesidades)
+            # Maneja del caso de credenciales correctas
             if username == 'user' and password == 'user':
-                # Redirige a la página de paneldecontrol.html
                 return redirect(url_for('paneldecontrol'))
+
+            # Maneja el caso de credenciales incorrectas
             else:
-                # Maneja el caso de credenciales incorrectas (puedes personalizar este mensaje)
                 return "Credenciales incorrectas"
-        except KeyError:
-            # Maneja el caso en el que las claves no estén presentes en la solicitud
-            return "Datos de formulario incorrectos"  
+
+        # Maneja excepciones
+        except Exception as e:
+            print(f"Error: {e}")
+
+    # Carga la página de LOGIN
     return render_template('login.html')
 
 
@@ -67,6 +70,7 @@ def inventario():
 
     # AÑADIR ARTICULO
     if request.method == 'POST':
+        # Obtiene los datos del formulario
         Nombre = request.form['Nombre']
         CantidadEnStock = request.form['CantidadEnStock']
         FechaAdquisicion = request.form['FechaAdquisicion']
@@ -74,8 +78,10 @@ def inventario():
         PrecioVenta = request.form['PrecioVenta']
         IDProveedor = request.form['IDProveedor']
 
+        # Realiza la conección con la base de datos
         connection = pymysql.connect(**db_config)
 
+        # Realiza el INSERT
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO PIEZA (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -258,7 +264,7 @@ def empleados():
             if connection:
                 connection.close()
             return render_template('empleados.html', data=result)
-        
+
     # AÑADIR ARTICULO
     if request.method == 'POST':
         Nombre = request.form['Nombre']
@@ -274,7 +280,7 @@ def empleados():
             with connection.cursor() as cursor:
                 sql = "INSERT INTO EMPLEADO (Nombre, Apellido1, Apellido2, Telefono, IDPuesto, Estado) VALUES (%s, %s, %s, %s, %s, %s)"
                 cursor.execute(sql, (Nombre, Apellido1,
-                                Apellido2, Telefono, IDPuesto, Estado))
+                                     Apellido2, Telefono, IDPuesto, Estado))
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro insertado correctamente'}
@@ -370,7 +376,8 @@ def clientes():
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO CLIENTE (Nombre, Apellido1, Apellido2, Telefono, Email) VALUES (%s, %s, %s, %s, %s)"
-                cursor.execute(sql, (Nombre, Apellido1, Apellido2, Telefono, Email))
+                cursor.execute(
+                    sql, (Nombre, Apellido1, Apellido2, Telefono, Email))
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro insertado correctamente'}
@@ -396,7 +403,8 @@ def clientes():
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE CLIENTE SET Nombre=%s, Apellido1=%s, Apellido2=%s, Telefono=%s, Email=%s WHERE IDCliente=%s "
-                cursor.execute(sql, (Nombre, Apellido1, Apellido2, Telefono, Email, IDCliente))
+                cursor.execute(
+                    sql, (Nombre, Apellido1, Apellido2, Telefono, Email, IDCliente))
 
             connection.commit()
             response = {'status': 'success',
@@ -450,7 +458,7 @@ def vehiculos():
             if connection:
                 connection.close()
             return render_template('vehiculos.html', data=result)
-        
+
     # AÑADIR REGISTROS
     if request.method == 'POST':
         Marca = request.form['Marca']
@@ -465,7 +473,8 @@ def vehiculos():
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, IDCliente) VALUES (%s, %s, %s, %s, %s, %s)"
-                cursor.execute(sql, (Marca, Modelo, Anio, Placa, Color, IDCliente))
+                cursor.execute(
+                    sql, (Marca, Modelo, Anio, Placa, Color, IDCliente))
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro insertado correctamente'}
@@ -548,7 +557,7 @@ def servicios():
             if connection:
                 connection.close()
             return render_template('servicios.html', data=result)
-        
+
      # AÑADIR REGISTROS
     if request.method == 'POST':
         Nombre = request.form['Nombre']
@@ -563,7 +572,8 @@ def servicios():
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES (%s, %s, %s, %s, %s, %s)"
-                cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo))
+                cursor.execute(sql, (Nombre, Descripcion, Costo,
+                               Garantia, IDEmpleado, IDVehiculo))
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro insertado correctamente'}
@@ -590,7 +600,8 @@ def servicios():
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE SERVICIO SET Nombre=%s, Descripcion=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s"
-                cursor.execute(sql, (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo, IDServicio))
+                cursor.execute(sql, (Nombre, Descripcion, Costo,
+                               Garantia, IDEmpleado, IDVehiculo, IDServicio))
 
             connection.commit()
             response = {'status': 'success',
