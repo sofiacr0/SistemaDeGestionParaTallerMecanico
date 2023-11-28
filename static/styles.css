@@ -197,7 +197,7 @@ button {
     background-color: #1a1940;
 }
 
-/* MÁS estilos para los botones */
+/* MÁS estilos para los botones (para el sidebar especificamente)*/
 buttonpc {
     padding: 1.75px 20px;
     background-color: #3D3D3E;
@@ -234,7 +234,7 @@ input{
     font-size: 12px;
 }
 
-/* The side navigation menu */
+/* sidebar */
 .sidebar {
     margin: 0;
     padding: 0;
