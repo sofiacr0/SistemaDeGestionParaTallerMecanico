@@ -174,7 +174,7 @@ tbody tr:nth-child(even) {
 /* Estilos para las imagenes */
 img {
     display: block;
-    margin-left: auto;
+    margin-left: 650px;
     margin-right: auto;
     width: 16%;
 }
