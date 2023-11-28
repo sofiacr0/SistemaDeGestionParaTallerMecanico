@@ -217,7 +217,7 @@ buttonpcOPEN {
 }
 
 .buttonpc:hover {
-    background-color: #3D3D3E;
+    background-color: #3e3d3d;
 }
 
 .buttonpc:active {
@@ -265,6 +265,12 @@ input{
     color: white;
   }
   
+  /* Botón destacado */
+  .sidebar a.highlight:hover {
+    background-color: #903749; /* Rojo para el botón destacado */
+    color: white;
+  }
+
   /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
   div.content {
     margin-left: 200px;
