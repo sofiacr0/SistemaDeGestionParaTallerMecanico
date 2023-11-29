@@ -1,3 +1,15 @@
+"""
+Materia: Ingeniería de Software I 
+Maestro: González Zamora Pedro 
+
+Integrantes del equipo: 
+- Cárdenas Rosas Sofía 
+- Figueroa Hernández Sofia Belem 
+- López Cerecer Angélica Guadalupe 
+- Matus Valencia Elda Berenice 
+- Vega Gutiérrez Marian Eugenia
+"""
+
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import pymysql
 
@@ -23,29 +35,26 @@ def get_db_connection():
 def login():
     if request.method == 'POST':
         try:
-            # Obtiene los datos del formulario
+            # Obtiene los datos del formulario de inicio de sesión
             username = request.form['username']
             password = request.form['password']
-
             # Maneja del caso de credenciales correctas
             if username == 'user' and password == 'user':
                 return redirect(url_for('paneldecontrol'))
-
             # Maneja el caso de credenciales incorrectas
             else:
                 return "Credenciales incorrectas"
-
         # Maneja excepciones
         except Exception as e:
             print(f"Error: {e}")
-
-    # Carga la página de LOGIN
+    # Renderiza la plantilla HTML 'inventario.html'
     return render_template('login.html')
 
 
 # PANEL DE CONTROL
 @app.route('/paneldecontrol')
 def paneldecontrol():
+    # Renderiza la plantilla HTML 'paneldecontrol.html'
     return render_template('paneldecontrol.html')
 
 
@@ -54,48 +63,61 @@ def paneldecontrol():
 def inventario():
     # OBTENER TABLA
     if request.method == 'GET':
-        connection = None
         try:
+            # Inicializa la variable de conexión a la base de datos
+            connection = None 
+            # Obtiene una conexión a la base de datos
             connection = get_db_connection()
+            # Crea un cursor para interactuar con la base de datos
             with connection.cursor() as cursor:
+                # Ejecuta la instrucción SQL
                 cursor.execute('SELECT * FROM vista_piezas')
+                # Obtiene todos los resultados de la consulta
                 result = cursor.fetchall()
+        # Maneja excepciones
         except Exception as e:
             print(f"Error en la base de datos: {e}")
             result = None
+        # Garantiza que la conexión a la base de datos se cierre, si está abierta
         finally:
             if connection:
                 connection.close()
-            return render_template('inventario.html', data=result)
+        # Renderiza la plantilla HTML 'inventario.html'
+        return render_template('inventario.html', data=result)
 
-    # AÑADIR ARTICULO
+    # AÑADIR ARTÍCULO
     if request.method == 'POST':
-        # Obtiene los datos del formulario
+        # Obtiene los datos del formulario AÑADIR ARTÍCULO
         Nombre = request.form['Nombre']
         CantidadEnStock = request.form['CantidadEnStock']
         FechaAdquisicion = request.form['FechaAdquisicion']
         PrecioCompra = request.form['PrecioCompra']
         PrecioVenta = request.form['PrecioVenta']
         IDProveedor = request.form['IDProveedor']
-
-        # Realiza la conección con la base de datos
+        # Obtiene una conexión a la base de datos
         connection = pymysql.connect(**db_config)
-
-        # Realiza el INSERT
+        # Intenta jecutar la instrucción SQL
         try:
+            # Crea un cursor para interactuar con la base de datos
             with connection.cursor() as cursor:
                 sql = "INSERT INTO PIEZA (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor) VALUES (%s, %s, %s, %s, %s, %s)"
-                cursor.execute(sql, (Nombre, CantidadEnStock,
-                               FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor))
+                # Ejecuta la instrucción SQL
+                cursor.execute(sql, (Nombre, CantidadEnStock, FechaAdquisicion, PrecioCompra, PrecioVenta, IDProveedor))
             connection.commit()
+            # Muestra mensaje de éxito
             response = {'status': 'success',
                         'message': 'Registro insertado correctamente'}
+        # Maneja excepciones
         except Exception as e:
+            # Deshace la transacción
             connection.rollback()
+            #Muestra mensaje de error
             response = {'status': 'error',
                         'message': f'Error al insertar el registro: {str(e)}'}
+        # Garantiza que la conexión a la base de datos se cierre, si está abierta
         finally:
             connection.close()
+        # Devuelve al cliente el mensaje de éxito o de error
         return jsonify(response)
 
     # ACTUALIZAR ARTICULO
@@ -107,15 +129,12 @@ def inventario():
         PrecioCompra = request.form['PrecioCompra']
         PrecioVenta = request.form['PrecioVenta']
         IDProveedor = request.form['IDProveedor']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE PIEZA SET Nombre=%s, CantidadEnStock=%s, FechaAdquisicion=%s, PrecioCompra=%s, PrecioVenta=%s, IDProveedor=%s WHERE IDPieza=%s"
                 cursor.execute(sql, (Nombre, CantidadEnStock, FechaAdquisicion,
                                PrecioCompra, PrecioVenta, IDProveedor, IDPieza))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -130,14 +149,11 @@ def inventario():
     # ELIMINAR ARTICULO
     if request.method == 'DELETE':
         IDPieza = request.form['IDPieza']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM PIEZA WHERE IDPieza = %s"
                 cursor.execute(sql, (IDPieza))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro eliminado correctamente'}
@@ -176,9 +192,7 @@ def citas():
         FechaSalida = request.form['FechaSalida']
         IDServicio = request.form['IDServicio']
         IDEmpleado = request.form['IDEmpleado']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO CITA (IDCliente, FechaEntrada, FechaSalida, IDServicio, IDEmpleado) VALUES (%s, %s, %s, %s, %s)"
@@ -203,15 +217,12 @@ def citas():
         FechaSalida = request.form['FechaSalida']
         IDServicio = request.form['IDServicio']
         IDEmpleado = request.form['IDEmpleado']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE CITA SET IDCliente=%s, FechaEntrada=%s, FechaSalida=%s, IDServicio=%s, IDEmpleado=%s WHERE IDCita=%s "
                 cursor.execute(sql, (IDCliente, FechaEntrada,
                                FechaSalida, IDServicio, IDEmpleado, IDCita))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -226,9 +237,7 @@ def citas():
     # ELIMINAR REGISTROS
     if request.method == 'DELETE':
         IDCita = request.form['IDCita']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM CITA WHERE IDCita = %s"
@@ -273,9 +282,7 @@ def empleados():
         Telefono = request.form['Telefono']
         IDPuesto = request.form['IDPuesto']
         Estado = request.form['Estado']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO EMPLEADO (Nombre, Apellido1, Apellido2, Telefono, IDPuesto, Estado) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -301,15 +308,12 @@ def empleados():
         Telefono = request.form['Telefono']
         IDPuesto = request.form['IDPuesto']
         Estado = request.form['Estado']
-
-        connection = pymysql.connect(**db_config)
-
+        connection = pymysql.connect(**db_config)  
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE EMPLEADO SET Nombre=%s, Apellido1=%s, Apellido2=%s, Telefono=%s, IDPuesto=%s, Estado=%s WHERE IDEmpleado=%s"
                 cursor.execute(sql, (Nombre, Apellido1, Apellido2,
                                Telefono, IDPuesto, Estado, IDEmpleado))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -324,14 +328,11 @@ def empleados():
     # ELIMINAR ARTICULO
     if request.method == 'DELETE':
         IDEmpleado = request.form['IDEmpleado']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM EMPLEADO WHERE IDEmpleado = %s"
                 cursor.execute(sql, (IDEmpleado))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro eliminado correctamente'}
@@ -370,9 +371,7 @@ def clientes():
         Apellido2 = request.form['Apellido2']
         Telefono = request.form['Telefono']
         Email = request.form['Email']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO CLIENTE (Nombre, Apellido1, Apellido2, Telefono, Email) VALUES (%s, %s, %s, %s, %s)"
@@ -397,15 +396,12 @@ def clientes():
         Apellido2 = request.form['Apellido2']
         Telefono = request.form['Telefono']
         Email = request.form['Email']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE CLIENTE SET Nombre=%s, Apellido1=%s, Apellido2=%s, Telefono=%s, Email=%s WHERE IDCliente=%s "
                 cursor.execute(
                     sql, (Nombre, Apellido1, Apellido2, Telefono, Email, IDCliente))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -420,14 +416,11 @@ def clientes():
     # ELIMINAR REGISTROS
     if request.method == 'DELETE':
         IDCliente = request.form['IDCliente']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM CLIENTE WHERE IDCliente = %s"
                 cursor.execute(sql, (IDCliente))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro eliminado correctamente'}
@@ -467,9 +460,7 @@ def vehiculos():
         Placa = request.form['Placa']
         Color = request.form['Color']
         IDCliente = request.form['IDCliente']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO VEHICULO (Marca, Modelo, Anio, Placa, Color, IDCliente) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -495,15 +486,12 @@ def vehiculos():
         Placa = request.form['Placa']
         Color = request.form['Color']
         IDCliente = request.form['IDCliente']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE VEHICULO SET Marca=%s, Modelo=%s, Anio=%s, Placa=%s, Color=%s, IDCliente=%s WHERE IDVehiculo=%s"
                 cursor.execute(sql, (Marca, Modelo, Anio,
                                Placa, Color, IDCliente, IDVehiculo))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -518,14 +506,11 @@ def vehiculos():
     # ELIMINAR ARTICULO
     if request.method == 'DELETE':
         IDVehiculo = request.form['IDVehiculo']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM VEHICULO WHERE IDVehiculo = %s"
                 cursor.execute(sql, (IDVehiculo))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro eliminado correctamente'}
@@ -544,7 +529,6 @@ def servicios():
     # OBTIENE REGISTROS
     if request.method == 'GET':
         connection = None
-
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
@@ -566,9 +550,7 @@ def servicios():
         Garantia = request.form['Garantia']
         IDEmpleado = request.form['IDEmpleado']
         IDVehiculo = request.form['IDVehiculo']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO SERVICIO (Nombre, Descripcion, Costo, Garantia, IDEmpleado, IDVehiculo) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -594,15 +576,12 @@ def servicios():
         Garantia = request.form['Garantia']
         IDEmpleado = request.form['IDEmpleado']
         IDVehiculo = request.form['IDVehiculo']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE SERVICIO SET Nombre=%s, Descripcion=%s, Costo=%s, Garantia=%s, IDEmpleado=%s, IDVehiculo=%s WHERE IDServicio=%s"
                 cursor.execute(sql, (Nombre, Descripcion, Costo,
                                Garantia, IDEmpleado, IDVehiculo, IDServicio))
-
             connection.commit()
             response = {'status': 'success',
                         'message': 'Registro actualizado correctamente'}
@@ -617,9 +596,7 @@ def servicios():
     # ELIMINAR REGISTROS
     if request.method == 'DELETE':
         IDServicio = request.form['IDServicio']
-
         connection = pymysql.connect(**db_config)
-
         try:
             with connection.cursor() as cursor:
                 sql = "DELETE FROM SERVICIO WHERE IDServicio = %s"

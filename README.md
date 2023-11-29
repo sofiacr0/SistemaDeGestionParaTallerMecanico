@@ -1,4 +1,15 @@
-# supermejorproyectodepaginawebqueveranensusperrasvidas
+SISTEMA DE GESTIÓN PARA TALLER MECÁNICO
+
+Materia: Ingeniería de Software I 
+Maestro: González Zamora Pedro 
+
+Integrantes del equipo: 
+- Cárdenas Rosas Sofía 
+- Figueroa Hernández Sofia Belem 
+- López Cerecer Angélica Guadalupe 
+- Matus Valencia Elda Berenice 
+- Vega Gutiérrez Marian Eugenia
+
 
 Pasos para levantar la aplicación:
 

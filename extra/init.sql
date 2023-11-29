@@ -1,4 +1,14 @@
--- ULTIMA VERSION: 25 DE NOVIEMBRE DEL 2023 9:05 PM
+/*
+Materia: Ingeniería de Software I 
+Maestro: González Zamora Pedro 
+
+Integrantes del equipo: 
+- Cárdenas Rosas Sofía 
+- Figueroa Hernández Sofia Belem 
+- López Cerecer Angélica Guadalupe 
+- Matus Valencia Elda Berenice 
+- Vega Gutiérrez Marian Eugenia
+*/
 
 CREATE DATABASE IF NOT EXISTS TallerMecanico CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE TallerMecanico;
@@ -84,7 +94,7 @@ CREATE TABLE CITA (
     FOREIGN KEY (IDEmpleado) REFERENCES EMPLEADO(IDEmpleado)
 );
 
--- UNA MAUSQUEHERRAMIENTA QUE NOS AYUDARÁ MÁS TARDE
+-- 
 CREATE TABLE MesesEquivalencia (
     MesIngles VARCHAR(10),
     MesEspanol VARCHAR(10)

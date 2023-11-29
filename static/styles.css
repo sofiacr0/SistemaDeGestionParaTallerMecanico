@@ -1,10 +1,15 @@
 /*
-#2B2A4C azul
-#903749 vino
-#EEEBDD beige
+Materia: Ingeniería de Software I 
+Maestro: González Zamora Pedro 
+
+Integrantes del equipo: 
+- Cárdenas Rosas Sofía 
+- Figueroa Hernández Sofia Belem 
+- López Cerecer Angélica Guadalupe 
+- Matus Valencia Elda Berenice 
+- Vega Gutiérrez Marian Eugenia
 */
 
-/* Reset de estilos para una apariencia consistente en diferentes navegadores */
 body,
 h1,
 h2,
@@ -46,7 +51,6 @@ footerlogin {
 }
 
 nav ul {
-    /* Cambiado a 100% para ocupar todo el ancho del contenedor */
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 32px;
@@ -96,7 +100,7 @@ nav a {
     margin-top: 1rem;
 }
 
-/* Estilos para modales */
+/* Modales */
 
 .modal {
     display: none;
@@ -143,29 +147,21 @@ nav a {
     width: 80%;
     margin: auto;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 32px;
 }
-
-/* Estilos para el encabezado de la tabla */
 thead {
     background-color: #f0f0f0;
     text-align: center;
 }
-
-th,
-td {
+th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
-    /* Alinea el texto en las celdas al centro */
 }
-
-/* Estilos alternados para las filas */
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -197,7 +193,7 @@ button {
     background-color: #1a1940;
 }
 
-/* MÁS estilos para los botones (para el sidebar especificamente)*/
+/* Botones del sidebar*/
 buttonpc {
     padding: 1.75px 20px;
     background-color: #3D3D3E;
